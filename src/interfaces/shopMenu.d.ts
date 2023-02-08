@@ -7,4 +7,6 @@ export interface IShopItem extends IShopDefaultItem {
   isDropDown: boolean;
 }
 
-export interface IShopItemTag extends IShopDefaultItem {}
+export interface IShopItemTag extends IShopDefaultItem {
+  active?: boolean
+}

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import ShopMenuContext from "../../../context/shopMenuContext";
 import { arrowDownSVG } from "../../../img/svg/arrowDown";
 import { IShopItem } from "../../../interfaces/shopMenu";
-import DropDownModule from "./DropDownModule";
+import DropDownModule from "../../../containers/DropDownModule";
 
 interface Props {
   item: IShopItem;
@@ -21,7 +21,7 @@ const ShopMenuItem = (props: Props) => {
         <p className="text-mtextgray">{props.item.name}</p>
         {props.item.isDropDown && (
           <span
-            className={classNames("arrow-down transition-transform transition-colors duration-277", {
+            className={classNames("arrow-down transition-all duration-277", {
               "rotate-180 fill-mgreen": dropDownIsActive,
             })}
           >
