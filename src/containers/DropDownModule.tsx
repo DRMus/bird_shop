@@ -1,6 +1,7 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import DropDownModuleComponent from "../components/HomeComponents/HeaderComponents/DropDownModuleComponent";
+import { GlobalContextValue } from "../context/GlobalContext";
 import ShopMenuContext from "../context/shopMenuContext";
 import { IShopItemTag } from "../interfaces/shopMenu";
 import useOutsideAlerter from "../utils/useOutsideAlerter";
@@ -16,15 +17,7 @@ const moduleTags: IShopItemTag[] = [
   },
   {
     name: "Кормушки",
-    page: "#",
-  },
-  {
-    name: "Готовые комплекты",
-    page: "#",
-  },
-  {
-    name: "Aксессуары и другое",
-    page: "#",
+    page: "feeders",
   },
 ];
 
@@ -34,6 +27,7 @@ interface Props {
 
 const DropDownModule = (props: Props) => {
   const { showDropDown } = useContext(ShopMenuContext);
+  const { changeBreadCrumbs } = useContext(GlobalContextValue);
 
   const [moduleTagsState, setModuleTagsState] = useState<IShopItemTag[]>(moduleTags);
 
@@ -42,16 +36,22 @@ const DropDownModule = (props: Props) => {
 
   useOutsideAlerter(dropDownRef, showDropDown);
 
-  const redirectToPage = (path: string) => {
+  const redirectToPage = (path: IShopItemTag) => {
+    showDropDown(false);
+    changeBreadCrumbs(path.name, 1);
+    navigationTo(`${props.startPage}/${path.page}`);
+  };
+
+  useEffect(() => {
     setModuleTagsState((prev) => {
       prev = prev.map((item) => {
-        item.page === path ? (item.active = true) : (item.active = false);
+        window.location.pathname.includes(item.page) ? (item.active = true) : (item.active = false);
         return item;
       });
       return prev;
     });
-    navigationTo(`${props.startPage}/${path}`);
-  };
+  }, []);
+
   return (
     <DropDownModuleComponent
       startPage={props.startPage}

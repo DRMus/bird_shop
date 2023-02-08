@@ -5,11 +5,12 @@ import Home from "./pages/Home/Home";
 import Header from "./containers/Header";
 import FooterComponent from "./components/HomeComponents/FooterComponent";
 import Catalog from "./pages/Catalog/Catalog";
+import GlobalContext from "./context/GlobalContext";
 
 function App() {
   return (
     <div className="App w-full h-full flex flex-col bg-mgray">
-      <>
+      <GlobalContext>
         <header className="header-container top-0 left-0">
           <Header />
         </header>
@@ -22,7 +23,7 @@ function App() {
         <footer className="bg-micon w-full h-64 flex items-center justify-center">
           <FooterComponent/>
         </footer>
-      </>
+      </GlobalContext>
     </div>
   );
 }

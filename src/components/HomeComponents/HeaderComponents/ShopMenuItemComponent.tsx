@@ -30,7 +30,7 @@ const ShopMenuItem = (props: Props) => {
         )}
       </div>
 
-      {(props.item.isDropDown && dropDownIsActive) && <DropDownModule startPage={props.item.page} />}
+      {props.item.isDropDown && dropDownIsActive && <DropDownModule startPage={props.item.page} />}
     </div>
   );
 };

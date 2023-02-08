@@ -1,18 +1,15 @@
 import classNames from "classnames";
-import React, { useContext } from "react";
-import ShopMenuContext from "../../../context/shopMenuContext";
+import React from "react";
 import { IShopItemTag } from "../../../interfaces/shopMenu";
 
 interface Props {
   startPage: string;
   moduleTags: IShopItemTag[];
   dropDownRef: React.RefObject<HTMLDivElement>;
-  redirectToPage: (path: string) => void;
+  redirectToPage: (path: IShopItemTag) => void;
 }
 
 const DropDownModule = (props: Props) => {
-  const { showDropDown } = useContext(ShopMenuContext);
-
   return (
     <div
       ref={props.dropDownRef}
@@ -29,8 +26,7 @@ const DropDownModule = (props: Props) => {
           )}
           key={index}
           onClick={(e) => {
-            showDropDown(false);
-            props.redirectToPage(item.page);
+            !item.active && props.redirectToPage(item);
           }}
         >
           <p>{item.name}</p>

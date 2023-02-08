@@ -3,14 +3,21 @@ import BuyCardItem from "../../../containers/BuyCardItem";
 import { ISeedsItem } from "../../../interfaces";
 
 interface Props {
-  seedsItems: ISeedsItem[];
+  birdsThings: ISeedsItem[];
+  hasWeight: boolean;
+  isSell: boolean;
 }
 
 const MixComponent = (props: Props) => {
   return (
     <>
-      {props.seedsItems.map((item, index) => (
-        <BuyCardItem hasWeight isSell item={item} key={index} />
+      {props.birdsThings.map((item, index) => (
+        <BuyCardItem
+          hasWeight={props.hasWeight}
+          isSell={props.isSell}
+          item={item}
+          key={index}
+        />
       ))}
     </>
   );
