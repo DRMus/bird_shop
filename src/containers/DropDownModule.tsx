@@ -1,19 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import DropDownModuleComponent from "../components/HomeComponents/HeaderComponents/DropDownModuleComponent";
-import { GlobalContextValue } from "../context/GlobalContext";
 import ShopMenuContext from "../context/shopMenuContext";
 import { IShopItemTag } from "../interfaces/shopMenu";
+import actions from "../redux/actions/breadCrumbs.actions";
 import useOutsideAlerter from "../utils/useOutsideAlerter";
 
 const moduleTags: IShopItemTag[] = [
   {
     name: "Готовые миксы",
     page: "mix",
-  },
-  {
-    name: "Отдельные виды кормов",
-    page: "seeds",
   },
   {
     name: "Кормушки",
@@ -27,7 +24,7 @@ interface Props {
 
 const DropDownModule = (props: Props) => {
   const { showDropDown } = useContext(ShopMenuContext);
-  const { changeBreadCrumbs } = useContext(GlobalContextValue);
+  const dispatch = useDispatch()
 
   const [moduleTagsState, setModuleTagsState] = useState<IShopItemTag[]>(moduleTags);
 
@@ -38,7 +35,7 @@ const DropDownModule = (props: Props) => {
 
   const redirectToPage = (path: IShopItemTag) => {
     showDropDown(false);
-    changeBreadCrumbs(path.name, 1);
+    dispatch(actions.setBreadCrumbs(1, path.name))
     navigationTo(`${props.startPage}/${path.page}`);
   };
 

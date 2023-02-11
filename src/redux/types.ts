@@ -1,0 +1,2 @@
+export const SET_BREAD_CRUMBS = "BREAD_CRUMBS:SET";
+export const DROP_BREAD_CRUMBS = "BREAD_CRUMBS:DROP";

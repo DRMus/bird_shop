@@ -5,6 +5,7 @@ interface Props {
   id: number;
   selectedWeight: number;
   weightHandler: (weight: number) => void;
+  largeFont?: boolean
 }
 
 const WeightComponent = ({ weightHandler, ...props }: Props) => {
@@ -13,9 +14,11 @@ const WeightComponent = ({ weightHandler, ...props }: Props) => {
       {[200, 400, 800, 1000].map((item, index) => (
         <div
           className={classNames(
-            "home-buy-card--weight-item grow text-center text-gray-500 text-lg rounded cursor-pointer",
+            "home-buy-card--weight-item grow text-center text-gray-500 rounded cursor-pointer",
             {
               "ring-1 ring-mgreen": props.selectedWeight === item,
+              "text-xl py-1": props.largeFont,
+              "text-lg": !props.largeFont
             }
           )}
           key={index}

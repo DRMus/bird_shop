@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomePageComponent from "../components/HomeComponents/HomePageComponent";
 
 import { IBirdType, ICatalogItem, IFeederType, ISeedsItem } from "../interfaces";
@@ -9,6 +9,7 @@ import dirdsNseedsPNG from "../img/png/birds_seeds.png";
 import testProduct from "../img/png/testProduct.png";
 import birdPhotoPNG from "../img/png/bird_photo.png";
 import feederPhotoPNG from "../img/png/feeder_photo.png";
+import getProducts from "../utils/Api/getProducts";
 
 const catalogItems: ICatalogItem[] = [
   {
@@ -27,41 +28,6 @@ const catalogItems: ICatalogItem[] = [
     image: dirdsNseedsPNG,
     firstDescription: "Отдельные виды кормов",
     secondDescription: "зерен",
-  },
-];
-
-const seedsItems: ISeedsItem[] = [
-  {
-    id: 1,
-    image: testProduct,
-    name: "PADOVAN OVOMIX GOLD ROSSO",
-    category: "Корм для птиц",
-    type: "Готовые миксы",
-    cost: 1000,
-  },
-  {
-    id: 2,
-    image: testProduct,
-    name: "PADOVAN OVOMIX GOLD ROSSO",
-    category: "Корм для птиц",
-    type: "Готовые миксы",
-    cost: 1000,
-  },
-  {
-    id: 3,
-    image: testProduct,
-    name: "PADOVAN OVOMIX GOLD ROSSO",
-    category: "Корм для птиц",
-    type: "Готовые миксы",
-    cost: 1000,
-  },
-  {
-    id: 4,
-    image: testProduct,
-    name: "PADOVAN OVOMIX GOLD ROSSO",
-    category: "Корм для птиц",
-    type: "Готовые миксы",
-    cost: 1000,
   },
 ];
 
@@ -92,42 +58,17 @@ const birdsItem: IBirdType[] = [
   },
 ];
 
-const feederItems: IFeederType[] = [
-  {
-    id: 1,
-    image: feederPhotoPNG,
-    cost: 1000,
-    name: `Комплект-агро "Избушка на курьих ножках"`,
-    category: "Кормушка малая",
-    type: "Кормушка",
-  },
-  {
-    id: 2,
-    image: feederPhotoPNG,
-    cost: 1000,
-    name: `Комплект-агро "Избушка на курьих ножках"`,
-    category: "Кормушка малая",
-    type: "Кормушка",
-  },
-  {
-    id: 3,
-    image: feederPhotoPNG,
-    cost: 1000,
-    name: `Комплект-агро "Избушка на курьих ножках"`,
-    category: "Кормушка малая",
-    type: "Кормушка",
-  },
-  {
-    id: 4,
-    image: feederPhotoPNG,
-    cost: 1000,
-    name: `Комплект-агро "Избушка на курьих ножках"`,
-    category: "Кормушка малая",
-    type: "Кормушка",
-  },
-];
-
 const HomePage = () => {
+  const [seedsItems, setSeedsItems] = useState<ISeedsItem[]>([]);
+  const [feederItems, setFeederItems] = useState<IFeederType[]>([]);
+  useEffect(() => {
+    getProducts("mix", undefined, 4).then((resp) => {
+      setSeedsItems(resp.data);
+    });
+    getProducts("feeders", undefined, 4).then((resp) => {
+      setFeederItems(resp.data);
+    });
+  }, []);
   return (
     <HomePageComponent
       catalogItems={catalogItems}

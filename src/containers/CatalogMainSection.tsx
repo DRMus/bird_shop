@@ -1,25 +1,52 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 import MixComponent from "../components/CatalogComponents/MixComponents/MixComponent";
-import { GlobalContextValue } from "../context/GlobalContext";
 import { ISeedsItem } from "../interfaces";
+import useQuery from "../utils/useQuery";
+
+import getProducts from "../utils/Api/getProducts";
+import { useDispatch, useSelector } from "react-redux";
+import actions from "../redux/actions/breadCrumbs.actions";
+import { IRootReduser } from "../redux";
 
 interface Props {
-  birdsThings: ISeedsItem[];
   pageName: string;
+  pathName: string;
   hasWeight?: boolean;
   isSell?: boolean;
 }
 
 const CatalogMainSection = (props: Props) => {
-  const {changeBreadCrumbs} = useContext(GlobalContextValue)
+  const query = useQuery();
+  const dispatch = useDispatch()
+  
+  const [selectedProduct, setSelectedProduct] = useState<ISeedsItem>();
+  const [birdsThings, setBirdsThings] = useState<ISeedsItem[]>([]);
+
   useEffect(() => {
-    changeBreadCrumbs(props.pageName, 1);
-  }, [])
+    dispatch(actions.setBreadCrumbs(1, props.pageName))
+    const queryId = query.get("id");
+
+    if (queryId) {
+      getProducts(props.pathName, queryId).then((resp) => {
+        setSelectedProduct(resp.data[0]);
+        dispatch(actions.setBreadCrumbs(2, resp.data[0].name))
+        setBirdsThings([]);
+      });
+    } else {
+      getProducts(props.pathName).then((resp) => {
+        setBirdsThings(resp.data);
+        setSelectedProduct(undefined);
+      });
+    }
+  }, [query.get("id"), props.pathName]);
   return (
     <MixComponent
+      pathname={props.pathName}
       hasWeight={props.hasWeight || false}
       isSell={props.isSell || false}
-      birdsThings={props.birdsThings}
+      birdsThings={birdsThings}
+      product={selectedProduct}
     />
   );
 };

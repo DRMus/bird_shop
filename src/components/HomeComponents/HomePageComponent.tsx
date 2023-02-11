@@ -24,17 +24,17 @@ const HomePageComponent = (props: Props) => {
       </MainSectionComponent>
       <MainSectionComponent header="Готовые миксы">
         {props.seedsItems.map((item, index) => (
-          <BuyCardItem key={index} item={item} hasWeight={true} isSell={true} />
+          <BuyCardItem pathname={"mix"} key={index} item={item} hasWeight={true} isSell={true} />
         ))}
       </MainSectionComponent>
       <MainSectionComponent header="Виды птиц">
         {props.birdsItem.map((item, index) => (
-          <BuyCardItem key={index} item={item} hasWeight={false} isSell={false} />
+          <BuyCardItem pathname={"birds"} key={index} item={item} hasWeight={false} isSell={false} />
         ))}
       </MainSectionComponent>
       <MainSectionComponent header="Кормушки">
         {props.feederItems.map((item, index) => (
-          <BuyCardItem key={index} item={item} hasWeight={false} isSell={true} />
+          <BuyCardItem pathname={"feeders"} key={index} item={item} hasWeight={false} isSell={true} />
         ))}
       </MainSectionComponent>
     </div>

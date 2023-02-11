@@ -16,7 +16,7 @@ function App() {
         </header>
         <section className="main-container grow flex flex-col items-center">
           <Routes>
-            <Route path="*" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="catalog/*" element={<Catalog/>}/>
           </Routes>
         </section>
