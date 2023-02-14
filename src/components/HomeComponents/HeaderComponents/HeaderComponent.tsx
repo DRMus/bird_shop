@@ -1,17 +1,29 @@
 import { PhoneOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router";
+import classNames from "classnames";
+import { NavigateFunction } from "react-router";
 import ShopMenu from "../../../containers/ShopMenu";
 
 import logo from "../../../img/png/logo.png";
+import AuthDropDownComponent from "./AuthDropDownComponent";
 
-const HeaderComponent = () => {
-  const navigationTo = useNavigate()
+interface Props {
+  isAuthModuleActive: boolean;
+  navigationTo: NavigateFunction;
+  showAuthModule: (state: boolean) => void;
+}
+
+const HeaderComponent = ({ navigationTo, showAuthModule, ...props }: Props) => {
   return (
     <div className="bg-white w-full h-48 shadow-header flex justify-center items-center">
       <div className="shop-info--split-lines flex flex-col gap-12 w-mscreen">
         <div className="shop-info flex">
           <div className="shop-info--logo grow">
-            <img src={logo} alt="Логотип" className="cursor-pointer" onClick={(e) => navigationTo("/")}/>
+            <img
+              src={logo}
+              alt="Логотип"
+              className="cursor-pointer"
+              onClick={(e) => navigationTo("/")}
+            />
           </div>
           <div className="shop-info--client flex items-center gap-16">
             <div className="shop-info--client--num flex flex-row items-center gap-2 transition-colors hover:text-mgreen hover:fill-mgreen">
@@ -28,7 +40,19 @@ const HeaderComponent = () => {
                   2
                 </div>
               </div>
-              <UserOutlined className="h-7 w-7 text-micon cursor-pointer" />
+              <div className="shop-info--profile relative">
+                <UserOutlined
+                  className={classNames("h-7 w-7 transition-colors duration-300 cursor-pointer ", {
+                    "text-mgreen": props.isAuthModuleActive,
+                    "text-micon": !props.isAuthModuleActive,
+                  })}
+                  onClick={(e) => showAuthModule(!props.isAuthModuleActive)}
+                />
+
+                {props.isAuthModuleActive && (
+                  <AuthDropDownComponent showAuthModule={showAuthModule} />
+                )}
+              </div>
             </div>
           </div>
         </div>

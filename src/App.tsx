@@ -6,6 +6,7 @@ import Header from "./containers/Header";
 import FooterComponent from "./components/HomeComponents/FooterComponent";
 import Catalog from "./pages/Catalog/Catalog";
 import GlobalContext from "./context/GlobalContext";
+import Auth from "./pages/Auth/Auth";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="catalog/*" element={<Catalog/>}/>
+            <Route path="auth" element={<Auth/>}/>
           </Routes>
         </section>
         <footer className="bg-micon w-full h-64 flex items-center justify-center">

@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShopMenuComponent from "../components/HomeComponents/HeaderComponents/ShopMenuComponent";
 import ShopMenuContext from "../context/shopMenuContext";
 
@@ -7,7 +6,7 @@ const ShopMenu = () => {
   const [dropDownIsActive, setDropDownIsActive] = useState<boolean>(false);
 
   const showDropDown = (state: boolean) => {
-    setDropDownIsActive(state)
+    setDropDownIsActive(state);
   };
 
   return (
@@ -22,4 +21,4 @@ const ShopMenu = () => {
   );
 };
 
-export default ShopMenu;
+export default React.memo(ShopMenu);
