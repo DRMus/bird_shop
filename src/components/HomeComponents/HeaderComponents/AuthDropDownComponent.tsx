@@ -19,7 +19,7 @@ const AuthDropDownComponent = ({ showAuthModule }: Props) => {
       <button
         className="text-base text-white px-8 py-3 rounded-xl bg-mgreen transition-colors hover:bg-mstronggreen active:bg-mgreen"
         onClick={(e) => {
-          navigateTo("/auth?q=login");
+          navigateTo("/profile?q=login");
           showAuthModule(false);
         }}
       >
@@ -28,7 +28,7 @@ const AuthDropDownComponent = ({ showAuthModule }: Props) => {
       <button
         className="text-base text-micon px-8 py-3 rounded-xl border border-gray-300 transition-colors hover:bg-gray-100 active:bg-gray-200"
         onClick={(e) => {
-          navigateTo("/auth?q=reg");
+          navigateTo("/profile?q=reg");
           showAuthModule(false);
         }}
       >

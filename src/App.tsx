@@ -8,18 +8,20 @@ import Catalog from "./pages/Catalog/Catalog";
 import GlobalContext from "./context/GlobalContext";
 import Auth from "./pages/Auth/Auth";
 
+const CompHeader = <Header key="head"/>
+
 function App() {
   return (
     <div className="App w-full h-full flex flex-col bg-mgray">
       <GlobalContext>
         <header className="header-container top-0 left-0">
-          <Header />
+          {CompHeader}
         </header>
         <section className="main-container grow flex flex-col items-center">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="catalog/*" element={<Catalog/>}/>
-            <Route path="auth" element={<Auth/>}/>
+            <Route path="profile" element={<Auth/>}/>
           </Routes>
         </section>
         <footer className="bg-micon w-full h-64 flex items-center justify-center">

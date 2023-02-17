@@ -18,16 +18,14 @@ const DropDownModule = (props: Props) => {
       {props.moduleTags.map((item, index) => (
         <div
           className={classNames(
-            "drop-down--item pl-6 pr-8 py-3 text-mtextgray first-of-type:pt-6 last-of-type:pb-6",
+            "drop-down--item pl-6 pr-8 py-3 first-of-type:pt-6 last-of-type:pb-6 cursor-pointer hover:bg-gray-100",
             {
-              "text-mgreen cursor-default": item.active,
-              "cursor-pointer hover:bg-gray-100": !item.active,
+              "text-mgreen": item.active,
+              "text-mtextgray": !item.active,
             }
           )}
           key={index}
-          onClick={(e) => {
-            !item.active && props.redirectToPage(item);
-          }}
+          onClick={(e) => props.redirectToPage(item)}
         >
           <p>{item.name}</p>
         </div>
