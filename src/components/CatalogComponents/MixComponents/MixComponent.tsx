@@ -1,7 +1,7 @@
 import React from "react";
 import BuyCardItem from "../../../containers/BuyCardItem";
+import ProductContainer from "../../../containers/ProductContainer";
 import { ISeedsItem } from "../../../interfaces";
-import ProductComponent from "./ProductComponent";
 
 interface Props {
   birdsThings: ISeedsItem[];
@@ -15,7 +15,7 @@ const MixComponent = (props: Props) => {
   return (
     <>
       {props.product ? (
-        <ProductComponent product={props.product}/>
+        <ProductContainer product={props.product} hasWeight={props.hasWeight}/>
       ) : (
         props.birdsThings.map((item, index) => (
           <BuyCardItem pathname={props.pathname} hasWeight={props.hasWeight} isSell={props.isSell} item={item} key={index} />
