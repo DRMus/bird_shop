@@ -6,11 +6,10 @@ import useQuery from "../utils/useQuery";
 const AuthPage = () => {
   const [isLoginPage, setIsLoginPage] = useState<boolean>(false);
 
-  const navigateTo = useNavigate();
+  const redirectTo = useNavigate();
   const query = useQuery();
 
   const changeFormUI = (state: boolean) => {
-    navigateTo(`/profile?q=${state ? "login" : "reg"}`)
     setIsLoginPage(state);
   };
 
@@ -23,7 +22,7 @@ const AuthPage = () => {
   }, [query.get("q")]);
 
   return (
-    <AuthComponent isLoginPage={isLoginPage} changeFormUI={changeFormUI} navigateTo={navigateTo} />
+    <AuthComponent isLoginPage={isLoginPage} changeFormUI={changeFormUI} redirectTo={redirectTo} />
   );
 };
 

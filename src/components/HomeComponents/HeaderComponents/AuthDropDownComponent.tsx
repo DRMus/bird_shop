@@ -8,7 +8,7 @@ interface Props {
 
 const AuthDropDownComponent = ({ showAuthModule }: Props) => {
   const dropDownRef = useRef<HTMLDivElement>(null);
-  const navigateTo = useNavigate();
+  const redirectTo = useNavigate();
 
   useOutsideAlerter(dropDownRef, showAuthModule);
   return (
@@ -19,7 +19,7 @@ const AuthDropDownComponent = ({ showAuthModule }: Props) => {
       <button
         className="text-base text-white px-8 py-3 rounded-xl bg-mgreen transition-colors hover:bg-mstronggreen active:bg-mgreen"
         onClick={(e) => {
-          navigateTo("/profile?q=login");
+          redirectTo("/auth?q=login");
           showAuthModule(false);
         }}
       >
@@ -28,7 +28,7 @@ const AuthDropDownComponent = ({ showAuthModule }: Props) => {
       <button
         className="text-base text-micon px-8 py-3 rounded-xl border border-gray-300 transition-colors hover:bg-gray-100 active:bg-gray-200"
         onClick={(e) => {
-          navigateTo("/profile?q=reg");
+          redirectTo("/auth?q=reg");
           showAuthModule(false);
         }}
       >

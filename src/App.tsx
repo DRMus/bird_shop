@@ -7,6 +7,7 @@ import FooterComponent from "./components/HomeComponents/FooterComponent";
 import Catalog from "./pages/Catalog/Catalog";
 import GlobalContext from "./context/GlobalContext";
 import Auth from "./pages/Auth/Auth";
+import Profile from "./pages/Profile/Profile";
 
 const CompHeader = <Header key="head"/>
 
@@ -21,7 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="catalog/*" element={<Catalog/>}/>
-            <Route path="profile" element={<Auth/>}/>
+            <Route path="auth" element={<Auth/>}/>
+            <Route path="profile" element={<Profile/>}/>
           </Routes>
         </section>
         <footer className="bg-micon w-full h-64 flex items-center justify-center">

@@ -12,14 +12,14 @@ interface Props {
 const BuyCardItem = (props: Props) => {
   const [selectedWeight, setSelectedWeight] = useState<number>(200);
 
-  const navigateTo = useNavigate();
+  const redirectTo = useNavigate();
 
   const weightHandler = (weight: number) => {
     setSelectedWeight(weight);
   };
 
   const redirectToCard = (id: string | number) => {
-    navigateTo(`/catalog/${props.pathname}?id=${id}`)
+    redirectTo(`/catalog/${props.pathname}?id=${id}`)
   }
 
   return (

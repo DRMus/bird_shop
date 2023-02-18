@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { useSelector } from "react-redux";
-import { GlobalContextValue } from "../../context/GlobalContext";
 import { IRootReduser } from "../../redux";
 
+const getBreadCrumbs = (state: IRootReduser) => state.breadCrumbs.breadCrumbs
+
 const BreadCrumbsComponent = () => {
-  const breadCrumbs = useSelector<IRootReduser, string[]>((state) => state.breadCrumbs.breadCrumbs);
+  const breadCrumbs = useSelector<IRootReduser, string[]>(getBreadCrumbs);
   return (
     <>
       {breadCrumbs.map((item, index) => (

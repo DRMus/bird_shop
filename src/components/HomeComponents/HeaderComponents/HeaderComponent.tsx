@@ -14,7 +14,7 @@ interface Props {
 
 const HeaderComponent = ({ navigationTo, showAuthModule, ...props }: Props) => {
   return (
-    <div className="bg-white w-full h-48 shadow-header flex justify-center items-center">
+    <div className="bg-white w-full h-52 shadow-header flex justify-center items-center">
       <div className="shop-info--split-lines flex flex-col gap-12 w-mscreen">
         <div className="shop-info flex">
           <div className="shop-info--logo grow">
