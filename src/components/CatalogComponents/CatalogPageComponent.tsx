@@ -3,8 +3,8 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import BreadCrumbsComponent from "./BreadCrumbsComponent";
 import PaginationComponent from "./PaginationComponent";
-import CatalogMainSection from "../../containers/CatalogMainSection";
-import PrevPage from "../../containers/PrevPage";
+import CatalogMainSection from "../../containers/Catalog/CatalogMainSection";
+import PrevPage from "../../containers/Templates/PrevPage";
 
 interface Props {}
 

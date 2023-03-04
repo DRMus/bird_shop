@@ -1,6 +1,6 @@
 import React from "react";
-import BuyCardItem from "../../../containers/BuyCardItem";
-import ProductContainer from "../../../containers/ProductContainer";
+import BuyCardItem from "../../../containers/Templates/BuyCardItem";
+import ProductContainer from "../../../containers/Product/ProductContainer";
 import { ISeedsItem } from "../../../interfaces";
 
 interface Props {

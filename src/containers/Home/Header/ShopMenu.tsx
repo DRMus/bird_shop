@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ShopMenuComponent from "../components/HomeComponents/HeaderComponents/ShopMenuComponent";
-import ShopMenuContext from "../context/shopMenuContext";
+import ShopMenuComponent from "../../../components/HomeComponents/HeaderComponents/ShopMenuComponent";
+import ShopMenuContext from "../../../context/shopMenuContext";
 
 const ShopMenu = () => {
   const [dropDownIsActive, setDropDownIsActive] = useState<boolean>(false);

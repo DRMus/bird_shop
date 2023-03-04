@@ -1,5 +1,5 @@
 import React from "react";
-import PrevPage from "../../containers/PrevPage";
+import PrevPage from "../../containers/Templates/PrevPage";
 import SectionTemplate from "./SectionTemplate";
 import UserInformation from "./UserInformation";
 import UserOrders from "./UserOrders";

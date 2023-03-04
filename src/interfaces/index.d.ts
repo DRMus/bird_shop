@@ -20,11 +20,8 @@ export interface IBirdType extends IBuyCardDefaultItem {
   category: string;
 }
 
-export interface IFeederType extends IBuyCardDefaultItem {
-  name: string;
-  category: string;
-  type: string;
-  cost: number;
+export interface IFeederType extends ISeedsItem {
+  
 }
 
 export interface IBreadCrumb {

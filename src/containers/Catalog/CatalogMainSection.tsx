@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import MixComponent from "../components/CatalogComponents/MixComponents/MixComponent";
-import { ISeedsItem } from "../interfaces";
-import useQuery from "../utils/useQuery";
+import MixComponent from "../../components/CatalogComponents/MixComponents/MixComponent";
+import { ISeedsItem } from "../../interfaces";
+import useQuery from "../../utils/useQuery";
 
-import getProducts from "../utils/Api/getProducts";
+import getProducts from "../../utils/Api/getProducts";
 import { useDispatch, useSelector } from "react-redux";
-import actions from "../redux/actions/breadCrumbs.actions";
-import { IRootReduser } from "../redux";
+import actions from "../../redux/actions/breadCrumbs.actions";
+import { IRootReduser } from "../../redux";
 
 interface Props {
   pageName: string;

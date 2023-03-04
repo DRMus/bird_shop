@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import { ISeedsItem } from "../../../interfaces";
-import WeightComponent from "../../HomeComponents/MainSectionComponents/WeightComponent";
-import ProductCounter from "./ProductCounter";
+import WeightComponent from "../../TemplatesComponents/WeightComponent";
+import ProductCounter from "../../TemplatesComponents/ProductCounter";
 
 interface Props {
   product: ISeedsItem;

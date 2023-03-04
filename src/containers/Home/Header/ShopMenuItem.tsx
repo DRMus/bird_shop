@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import ShopMenuItemComponent from '../components/HomeComponents/HeaderComponents/ShopMenuItemComponent'
-import { IShopItem } from '../interfaces/shopMenu'
+import ShopMenuItemComponent from '../../../components/HomeComponents/HeaderComponents/ShopMenuItemComponent'
+import { IShopItem } from '../../../interfaces/shopMenu'
 
 interface Props {
   item: IShopItem;

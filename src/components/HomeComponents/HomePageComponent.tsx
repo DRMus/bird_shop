@@ -2,7 +2,7 @@ import React from "react";
 
 import MainSectionComponent from "./MainSectionComponents/MainSectionComponent";
 import CatalogItem from "./MainSectionComponents/CatalogItem";
-import BuyCardItem from "../../containers/BuyCardItem";
+import BuyCardItem from "../../containers/Templates/BuyCardItem";
 
 import { IBirdType, ICatalogItem, IFeederType, ISeedsItem } from "../../interfaces";
 

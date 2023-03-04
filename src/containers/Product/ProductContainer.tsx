@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ProductComponent from "../components/CatalogComponents/MixComponents/ProductComponent";
-import { ISeedsItem } from "../interfaces";
+import ProductComponent from "../../components/CatalogComponents/MixComponents/ProductComponent";
+import { ISeedsItem } from "../../interfaces";
 
 interface Props {
   product: ISeedsItem;

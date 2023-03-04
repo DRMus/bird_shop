@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import BuyCardItemComponent from "../components/HomeComponents/MainSectionComponents/BuyCardItemComponent";
+import BuyCardItemComponent from "../../components/TemplatesComponents/BuyCardItemComponent";
 
 interface Props {
   item: any;

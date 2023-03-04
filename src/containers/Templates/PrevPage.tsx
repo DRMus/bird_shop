@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
-import PrevPageComponent from '../components/CatalogComponents/PrevPageComponent';
+import PrevPageComponent from '../../components/TemplatesComponents/PrevPageComponent';
 
 const PrevPage = () => {
   const redirectTo = useNavigate();

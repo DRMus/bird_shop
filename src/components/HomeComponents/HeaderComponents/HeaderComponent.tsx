@@ -1,7 +1,7 @@
 import { PhoneOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import { NavigateFunction } from "react-router";
-import ShopMenu from "../../../containers/ShopMenu";
+import ShopMenu from "../../../containers/Home/Header/ShopMenu";
 
 import logo from "../../../img/png/logo.png";
 import AuthDropDownComponent from "./AuthDropDownComponent";

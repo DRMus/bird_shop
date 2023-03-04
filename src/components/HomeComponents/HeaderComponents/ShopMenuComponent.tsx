@@ -1,5 +1,5 @@
 import React from "react";
-import ShopMenuItem from "../../../containers/ShopMenuItem";
+import ShopMenuItem from "../../../containers/Home/Header/ShopMenuItem";
 import { IShopItem } from "../../../interfaces/shopMenu";
 
 const menuItems: IShopItem[] = [

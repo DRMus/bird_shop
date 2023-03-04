@@ -4,7 +4,7 @@ import classNames from "classnames";
 import ShopMenuContext from "../../../context/shopMenuContext";
 import { arrowDownSVG } from "../../../img/svg/arrowDown";
 import { IShopItem } from "../../../interfaces/shopMenu";
-import DropDownModule from "../../../containers/DropDownModule";
+import DropDownModule from "../../../containers/Home/Header/DropDownModule";
 
 interface Props {
   item: IShopItem;

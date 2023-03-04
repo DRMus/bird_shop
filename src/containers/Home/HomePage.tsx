@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import HomePageComponent from "../components/HomeComponents/HomePageComponent";
+import HomePageComponent from "../../components/HomeComponents/HomePageComponent";
 
-import { IBirdType, ICatalogItem, IFeederType, ISeedsItem } from "../interfaces";
+import { IBirdType, ICatalogItem, IFeederType, ISeedsItem } from "../../interfaces";
 
-import birdPNG from "../img/png/bird.png";
-import seedsPNG from "../img/png/seeds.png";
-import dirdsNseedsPNG from "../img/png/birds_seeds.png";
-import testProduct from "../img/png/testProduct.png";
-import birdPhotoPNG from "../img/png/bird_photo.png";
-import feederPhotoPNG from "../img/png/feeder_photo.png";
-import getProducts from "../utils/Api/getProducts";
+import birdPNG from "../../img/png/bird.png";
+import seedsPNG from "../../img/png/seeds.png";
+import dirdsNseedsPNG from "../../img/png/birds_seeds.png";
+import birdPhotoPNG from "../../img/png/bird_photo.png";
+import getProducts from "../../utils/Api/getProducts";
 
 const catalogItems: ICatalogItem[] = [
   {

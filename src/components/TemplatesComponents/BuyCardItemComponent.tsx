@@ -2,9 +2,7 @@ import React from "react";
 import ShoppingCartOutlined from "@ant-design/icons/lib/icons/ShoppingCartOutlined";
 
 import WeightComponent from "./WeightComponent";
-import { IBirdType, ISeedsItem } from "../../../interfaces";
-
-import testProduct from "../../../img/png/testProduct.png"
+import testProduct from "../../img/png/testProduct.png"
 
 interface Props {
   item: any;

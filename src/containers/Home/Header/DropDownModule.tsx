@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import DropDownModuleComponent from "../components/HomeComponents/HeaderComponents/DropDownModuleComponent";
-import ShopMenuContext from "../context/shopMenuContext";
-import { IShopItemTag } from "../interfaces/shopMenu";
-import actions from "../redux/actions/breadCrumbs.actions";
-import useOutsideAlerter from "../utils/useOutsideAlerter";
+import DropDownModuleComponent from "../../../components/HomeComponents/HeaderComponents/DropDownModuleComponent";
+import ShopMenuContext from "../../../context/shopMenuContext";
+import { IShopItemTag } from "../../../interfaces/shopMenu";
+import actions from "../../../redux/actions/breadCrumbs.actions";
+import useOutsideAlerter from "../../../utils/useOutsideAlerter";
 
 const moduleTags: IShopItemTag[] = [
   {
