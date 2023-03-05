@@ -8,11 +8,12 @@ import AuthDropDownComponent from "./AuthDropDownComponent";
 
 interface Props {
   isAuthModuleActive: boolean;
-  navigationTo: NavigateFunction;
+  isExpired: boolean;
+  redirectTo: NavigateFunction;
   showAuthModule: (state: boolean) => void;
 }
 
-const HeaderComponent = ({ navigationTo, showAuthModule, ...props }: Props) => {
+const HeaderComponent = ({ redirectTo, showAuthModule, ...props }: Props) => {
   return (
     <div className="bg-white w-full h-52 shadow-header flex justify-center items-center">
       <div className="shop-info--split-lines flex flex-col gap-12 w-mscreen">
@@ -22,7 +23,7 @@ const HeaderComponent = ({ navigationTo, showAuthModule, ...props }: Props) => {
               src={logo}
               alt="Логотип"
               className="cursor-pointer"
-              onClick={(e) => navigationTo("/")}
+              onClick={(e) => redirectTo("/")}
             />
           </div>
           <div className="shop-info--client flex items-center gap-16">
@@ -46,10 +47,14 @@ const HeaderComponent = ({ navigationTo, showAuthModule, ...props }: Props) => {
                     "text-mgreen": props.isAuthModuleActive,
                     "text-micon": !props.isAuthModuleActive,
                   })}
-                  onClick={(e) => showAuthModule(!props.isAuthModuleActive)}
+                  onClick={(e) =>
+                    props.isExpired
+                      ? showAuthModule(!props.isAuthModuleActive)
+                      : redirectTo("/profile")
+                  }
                 />
 
-                {props.isAuthModuleActive && (
+                {props.isAuthModuleActive && props.isExpired && (
                   <AuthDropDownComponent showAuthModule={showAuthModule} />
                 )}
               </div>

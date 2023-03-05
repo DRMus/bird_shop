@@ -28,7 +28,7 @@ const DropDownModule = (props: Props) => {
 
   const [moduleTagsState, setModuleTagsState] = useState<IShopItemTag[]>(moduleTags);
 
-  const navigationTo = useNavigate();
+  const redirectTo = useNavigate();
   const dropDownRef = useRef<HTMLDivElement>(null);
 
   useOutsideAlerter(dropDownRef, showDropDown);
@@ -36,7 +36,7 @@ const DropDownModule = (props: Props) => {
   const redirectToPage = (path: IShopItemTag) => {
     showDropDown(false);
     dispatch(actions.setBreadCrumbs(1, path.name))
-    navigationTo(`${props.startPage}/${path.page}`);
+    redirectTo(`${props.startPage}/${path.page}`);
   };
 
   useEffect(() => {

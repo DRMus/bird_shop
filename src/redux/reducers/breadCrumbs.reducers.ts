@@ -12,8 +12,10 @@ export default (
   switch (action.type) {
     case BreadCrumbsTypes.SET_BREAD_CRUMBS:
       if (!action.payload) return state;
+
       const slicedArray = state.breadCrumbs.slice(0, action.level);
       slicedArray.push(...action.payload);
+
       return { ...state, breadCrumbs: slicedArray };
     case BreadCrumbsTypes.DROP_BREAD_CRUMBS:
       return { ...state, breadCrumbs: state.breadCrumbs.slice(0, action.level) };

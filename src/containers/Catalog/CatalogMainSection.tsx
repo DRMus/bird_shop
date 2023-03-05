@@ -7,7 +7,7 @@ import useQuery from "../../utils/useQuery";
 import getProducts from "../../utils/Api/getProducts";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../redux/actions/breadCrumbs.actions";
-import { IRootReduser } from "../../redux";
+import { IRootReducer } from "../../redux";
 
 interface Props {
   pageName: string;
