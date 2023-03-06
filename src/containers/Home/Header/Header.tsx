@@ -17,7 +17,6 @@ const Header = () => {
     tokenActions
       .checkToken()(dispatch)
       .then(() => {
-        console.log(isExpired)
         isExpired ? setIsAuthModuleActive(state) : redirectTo("/profile");
       });
   }, [isExpired]);

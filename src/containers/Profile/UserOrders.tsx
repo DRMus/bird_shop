@@ -1,8 +1,7 @@
 import React from "react";
-import UserOrdersComponent from "../../components/ProfileComponents/UserOrdersComponent";
+import UserOrdersComponent from "../../components/ProfileComponents/OrdersComponents/UserOrdersComponent";
 
 const UserOrders = () => {
-  
   return <UserOrdersComponent />;
 };
 

@@ -46,7 +46,6 @@ const UserInformation = ({ showEditModal, submitEditUser, ...props }: Props) => 
         <p className="text-sm text-zinc-500 px-1">Адрес:</p>
         <div className="user-location--box bg-mgreen px-5 py-3 rounded-lg text-white">
           <p className="">{props.userInfo.address}</p>
-          {/* <p className="">Индекс: 256743</p> */}
         </div>
       </div>
     </div>
