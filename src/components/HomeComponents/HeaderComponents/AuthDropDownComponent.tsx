@@ -1,8 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { IRootReducer } from "../../../redux";
-import tokenActions from "../../../redux/actions/token.actions";
 import useOutsideAlerter from "../../../utils/useOutsideAlerter";
 
 interface Props {

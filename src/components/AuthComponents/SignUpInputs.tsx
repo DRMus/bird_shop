@@ -1,5 +1,5 @@
 import React from "react";
-import AuthInputComponent from "./TemplateComponents/FormInputComponent";
+import AuthInputComponent from "./Templates/FormInputComponent";
 
 const SignUpInputs = () => {
   return (

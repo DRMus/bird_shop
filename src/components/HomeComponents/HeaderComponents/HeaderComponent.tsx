@@ -47,11 +47,7 @@ const HeaderComponent = ({ redirectTo, showAuthModule, ...props }: Props) => {
                     "text-mgreen": props.isAuthModuleActive,
                     "text-micon": !props.isAuthModuleActive,
                   })}
-                  onClick={(e) =>
-                    props.isExpired
-                      ? showAuthModule(!props.isAuthModuleActive)
-                      : redirectTo("/profile")
-                  }
+                  onClick={(e) => showAuthModule(!props.isAuthModuleActive)}
                 />
 
                 {props.isAuthModuleActive && props.isExpired && (

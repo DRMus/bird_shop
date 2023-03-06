@@ -8,17 +8,15 @@ import Catalog from "./pages/Catalog/Catalog";
 import GlobalContext from "./context/GlobalContext";
 import Auth from "./pages/Auth/Auth";
 import Profile from "./pages/Profile/Profile";
-import { useEffect } from "react";
-import axios from "axios";
-
-const CompHeader = <Header key="head" />;
 
 function App() {
   return (
     <div className="App w-full h-full flex flex-col bg-mgray">
       <GlobalContext>
-        <header className="header-container top-0 left-0">{CompHeader}</header>
-        <section className="main-container grow flex flex-col items-center">
+        <header className="header-container top-0 left-0">
+          <Header />
+        </header>
+        <section className="main-container min-h-[800px] flex flex-col items-center">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="catalog/*" element={<Catalog />} />

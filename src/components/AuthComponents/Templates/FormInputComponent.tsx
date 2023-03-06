@@ -6,6 +6,7 @@ interface Props {
   placeholder: string;
   name: string;
   type?: HTMLInputTypeAttribute;
+  defaultValue?: string;
 }
 
 const AuthInputComponent = (props: Props) => {
@@ -32,6 +33,7 @@ const AuthInputComponent = (props: Props) => {
       <input
         type={props.type || "text"}
         name={props.name}
+        defaultValue={props.defaultValue}
         className={classNames("bg-msearchgray p-4 py-3.5 outline-none rounded-md border w-full", {
           "border-gray-300 focus:border-gray-400": !currentError,
           "border-red-300 focus:border-red-400": currentError,

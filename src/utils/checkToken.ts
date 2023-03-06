@@ -3,7 +3,7 @@ import { IDecodedToken, IInitialStateToken } from "../redux";
 
 export default (state: IInitialStateToken) => {
   if (!state.token) {
-    return state;
+    return {...state, decodedToken: null, isExpired: true};
   }
 
   let decodedToken: IDecodedToken;
@@ -14,7 +14,8 @@ export default (state: IInitialStateToken) => {
     decodedToken = jwtDecode(state.token);
   } catch (error) {
     console.error("не лезь в сторедж!!!! Мошенник");
-    return state;
+    isExpired = true;
+    return { ...state, isExpired };
   }
 
   currentTime = Math.floor(new Date().getTime() / 1000);

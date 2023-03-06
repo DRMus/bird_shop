@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import HeaderComponent from "../../../components/HomeComponents/HeaderComponents/HeaderComponent";
 import { IRootReducer } from "../../../redux";
 import tokenActions from "../../../redux/actions/token.actions";
-
-const getToken = (state: IRootReducer) => state.tokenReducer.token;
-const getIsExpired = (state: IRootReducer) => state.tokenReducer.isExpired;
+import { getIsExpired, getToken } from "../../../redux/selectors/token.selectors";
 
 const Header = () => {
   const [isAuthModuleActive, setIsAuthModuleActive] = useState<boolean>(false);
@@ -15,9 +13,14 @@ const Header = () => {
   const token = useSelector<IRootReducer, string>(getToken);
   const isExpired = useSelector<IRootReducer, boolean>(getIsExpired);
 
-  const showAuthModule = (state: boolean) => {
-    setIsAuthModuleActive(state);
-  };
+  const showAuthModule = useCallback((state: boolean) => {
+    tokenActions
+      .checkToken()(dispatch)
+      .then(() => {
+        console.log(isExpired)
+        isExpired ? setIsAuthModuleActive(state) : redirectTo("/profile");
+      });
+  }, [isExpired]);
 
   useEffect(() => {
     tokenActions.checkToken()(dispatch);
