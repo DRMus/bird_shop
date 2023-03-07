@@ -1,7 +1,7 @@
 import React from "react";
 
-import MainSectionComponent from "./MainSectionComponents/MainSectionComponent";
-import CatalogItem from "./MainSectionComponents/CatalogItem";
+import MainSectionComponent from "../TemplatesComponents/MainSectionComponents/MainSectionComponent";
+import CatalogItem from "../TemplatesComponents/MainSectionComponents/CatalogItem";
 import BuyCardItem from "../../containers/Templates/BuyCardItem";
 
 import { IBirdType, ICatalogItem, IFeederType, ISeedsItem } from "../../interfaces";
@@ -28,11 +28,11 @@ const HomePageComponent = (props: Props) => {
           <BuyCardItem pathname={"mix"} key={index} item={item} hasWeight={true} isSell={true} />
         )): <SpinnerComponent fontSize={72} className="w-mscreen h-72"/>}
       </MainSectionComponent>
-      <MainSectionComponent header="Виды птиц">
+      {/* <MainSectionComponent header="Виды птиц">
         {props.birdsItem.length ? props.birdsItem.map((item, index) => (
           <BuyCardItem pathname={"birds"} key={index} item={item} hasWeight={false} isSell={false} />
         )): <SpinnerComponent fontSize={72} className="w-mscreen h-72"/>}
-      </MainSectionComponent>
+      </MainSectionComponent> */}
       <MainSectionComponent header="Кормушки">
         {props.feederItems.length ? props.feederItems.map((item, index) => (
           <BuyCardItem pathname={"feeders"} key={index} item={item} hasWeight={false} isSell={true} />

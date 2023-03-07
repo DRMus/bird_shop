@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import BreadCrumbsComponent from "./BreadCrumbsComponent";
 import PaginationComponent from "./PaginationComponent";
 import CatalogMainSection from "../../containers/Catalog/CatalogMainSection";
@@ -9,6 +9,7 @@ import PrevPage from "../../containers/Templates/PrevPage";
 interface Props {}
 
 const CatalogPageComponent = ({ ...props }: Props) => {
+  const location = useLocation()
   return (
     <div className="home-sections w-mscreen flex flex-col gap-6 py-20 text-micon">
       <div className="bread-crumbs flex gap-3.5">
@@ -30,7 +31,7 @@ const CatalogPageComponent = ({ ...props }: Props) => {
             />
           </Routes>
         </div>
-        {!window.location.href.includes("?") && (
+        {(location.search.indexOf("id") <= 0) && (
           <div className="catalog--main-section--pagination flex w-full items-center justify-center ">
             <PaginationComponent />
           </div>

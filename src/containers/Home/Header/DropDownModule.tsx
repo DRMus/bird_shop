@@ -55,6 +55,7 @@ const DropDownModule = (props: Props) => {
       moduleTags={moduleTagsState}
       dropDownRef={dropDownRef}
       redirectToPage={redirectToPage}
+      showDropDown={showDropDown}
     />
   );
 };

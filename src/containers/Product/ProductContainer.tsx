@@ -19,7 +19,6 @@ const ProductContainer = (props: Props) => {
     switch (operation) {
       case "-":
         if (selectedCount - 1 <= 0) return;
-
         setSelectedCount((prev) => prev - 1);
         break;
       case "+":

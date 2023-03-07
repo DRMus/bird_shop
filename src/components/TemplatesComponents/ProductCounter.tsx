@@ -1,27 +1,53 @@
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import classNames from "classnames";
 import React from "react";
 
 interface Props {
-  selectedCount: number
+  selectedCount: number;
+  smallSize?: boolean;
   changeCount: (operation: "-" | "+") => void;
 }
 
-const ProductCounter = ({changeCount, ...props}: Props) => {
+const ProductCounter = ({ changeCount, ...props }: Props) => {
   return (
-    <div className="product-section--counting flex flex-col gap-3">
-      <p className="text-mshadowgray text-lg">Количество:</p>
-      <div className="product-section--number flex items-center gap-5">
+    <div
+      className={classNames("flex flex-col", {
+        "gap-3": !props.smallSize,
+        "gap-1": props.smallSize,
+      })}
+    >
+      <p
+        className={classNames("text-mshadowgray", {
+          "text-lg": !props.smallSize,
+          "text-sm text-center": props.smallSize,
+        })}
+      >
+        Количество:
+      </p>
+      <div
+        className={classNames("flex items-center", {
+          "gap-5": !props.smallSize,
+          "gap-3": props.smallSize,
+        })}
+      >
         <button
-          className="product-section--decrement text-xl text-mgreen border border-mgreen rounded px-2"
+          className="text-mgreen border border-mgreen rounded flex justify-center items-center p-1.5"
           onClick={(e) => changeCount("-")}
         >
-          -
+          <MinusOutlined
+            className={classNames({ "w-3": !props.smallSize, "w-2.5 h-2.5": props.smallSize })}
+          />
         </button>
-        <p className="product-section--count text-2xl">{props.selectedCount}</p>
+        <p className={classNames({ "text-2xl": !props.smallSize, "text-lg": props.smallSize })}>
+          {props.selectedCount}
+        </p>
         <button
-          className="product-section--increment text-xl text-mgreen border border-mgreen rounded px-2"
+          className="text-mgreen border border-mgreen rounded flex justify-center items-center p-1.5"
           onClick={(e) => changeCount("+")}
         >
-          +
+          <PlusOutlined
+            className={classNames({ "w-3": !props.smallSize, "w-2.5 h-2.5": props.smallSize })}
+          />
         </button>
       </div>
     </div>

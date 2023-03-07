@@ -1,14 +1,14 @@
 import React from "react";
-import AuthInputComponent from "./Templates/FormInputComponent";
+import FormInputComponent from "../TemplatesComponents/FormInputComponent";
 
 const SignUpInputs = () => {
   return (
     <>
-      <AuthInputComponent placeholder="Телефон" name="phone_number" />
-      <AuthInputComponent placeholder="Пароль" name="password" type="password" />
-      <AuthInputComponent placeholder="Email" name="email" />
-      <AuthInputComponent placeholder="ФИО" name="fullname" />
-      <AuthInputComponent placeholder="Адрес" name="address" />
+      <FormInputComponent placeholder="Телефон" name="phone_number" />
+      <FormInputComponent placeholder="Пароль" name="password" type="password" />
+      <FormInputComponent placeholder="Email" name="email" />
+      <FormInputComponent placeholder="ФИО" name="fullname" />
+      <FormInputComponent placeholder="Адрес" name="address" />
       
     </>
   );

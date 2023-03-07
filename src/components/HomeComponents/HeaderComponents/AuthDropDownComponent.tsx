@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import useOutsideAlerter from "../../../utils/useOutsideAlerter";
+import DropDownTemplateComponent from "../../TemplatesComponents/DropDownTemplateComponent";
 
 interface Props {
   showAuthModule: (state: boolean) => void;
@@ -12,9 +13,10 @@ const AuthDropDownComponent = ({ showAuthModule }: Props) => {
 
   useOutsideAlerter(dropDownRef, showAuthModule);
   return (
-    <div
-      className="auth-module drop-down absolute top-full right-0 flex flex-col gap-5 bg-white shadow-xl z-50 px-6 py-8 rounded-xl"
-      ref={dropDownRef}
+    <DropDownTemplateComponent
+      className="gap-5 px-6 py-8"
+      showElement={showAuthModule}
+      stickySide="right"
     >
       <button
         className="text-base text-white px-8 py-3 rounded-xl bg-mgreen transition-colors hover:bg-mstronggreen active:bg-mgreen"
@@ -34,7 +36,7 @@ const AuthDropDownComponent = ({ showAuthModule }: Props) => {
       >
         Зарегистрироваться
       </button>
-    </div>
+    </DropDownTemplateComponent>
   );
 };
 

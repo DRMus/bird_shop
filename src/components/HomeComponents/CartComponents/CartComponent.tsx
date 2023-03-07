@@ -11,12 +11,13 @@ interface Props {
 
 const CartComponent = ({ onClick, showCartElement, ...props }: Props) => {
   return (
-    <div className="shop-info--cart relative cursor-pointer" onClick={onClick}>
+    <div className="shop-info--cart relative">
       <ShoppingCartOutlined
-        className={classNames("h-7 w-7 transition-colors duration-300", {
+        className={classNames("h-7 w-7 transition-colors duration-300 cursor-pointer", {
           "text-micon": !props.isCartActive,
           "text-mgreen": props.isCartActive,
         })}
+        onClick={onClick}
       />
 
       {props.isCartActive ? (

@@ -1,36 +1,24 @@
 import classNames from "classnames";
 import React from "react";
 import { IShopItemTag } from "../../../interfaces/shopMenu";
+import DropDownTemplateComponent from "../../TemplatesComponents/DropDownTemplateComponent";
+import DropDownItem from "./DropDownItem";
 
 interface Props {
   startPage: string;
   moduleTags: IShopItemTag[];
   dropDownRef: React.RefObject<HTMLDivElement>;
   redirectToPage: (path: IShopItemTag) => void;
+  showDropDown: (state: boolean) => void;
 }
 
-const DropDownModule = (props: Props) => {
+const DropDownModule = ({ showDropDown, redirectToPage, ...props }: Props) => {
   return (
-    <div
-      ref={props.dropDownRef}
-      className="drop-down absolute top-full mt-4 left-0 bg-white flex flex-col w-72 shadow-xl rounded-xl overflow-hidden z-50"
-    >
+    <DropDownTemplateComponent showElement={showDropDown} stickySide="left" fixedWidth>
       {props.moduleTags.map((item, index) => (
-        <div
-          className={classNames(
-            "drop-down--item pl-6 pr-8 py-3 first-of-type:pt-6 last-of-type:pb-6 cursor-pointer hover:bg-gray-100",
-            {
-              "text-mgreen": item.active,
-              "text-mtextgray": !item.active,
-            }
-          )}
-          key={index}
-          onClick={(e) => props.redirectToPage(item)}
-        >
-          <p>{item.name}</p>
-        </div>
+        <DropDownItem key={index} item={item} onClick={(e) => redirectToPage(item)} />
       ))}
-    </div>
+    </DropDownTemplateComponent>
   );
 };
 

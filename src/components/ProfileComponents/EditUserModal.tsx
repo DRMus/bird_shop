@@ -2,7 +2,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import React from "react";
 import ModalWindow from "../../containers/Templates/ModalWindow";
 import { IUserInfo } from "../../interfaces/api";
-import FormInputComponent from "../AuthComponents/Templates/FormInputComponent";
+import FormInputComponent from "../TemplatesComponents/FormInputComponent";
 
 interface Props {
   userInfo: IUserInfo;

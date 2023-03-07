@@ -1,15 +1,22 @@
-import React, { useRef } from "react";
-import useOutsideAlerter from "../../../utils/useOutsideAlerter";
+import { Empty } from "antd";
+import DropDownTemplateComponent from "../../TemplatesComponents/DropDownTemplateComponent";
+import CartWithItems from "./CartWithItems";
+import EmptyCart from "./EmptyCart";
 
 interface Props {
   showCartElement: (state: boolean) => void;
 }
 
-const CartDropDown = ({showCartElement, ...props}: Props) => {
-  const cartRef = useRef<HTMLDivElement>(null);
-  useOutsideAlerter(cartRef, showCartElement);
-
-  return <div ref={cartRef} className="drop-down absolute top-full right-0">CartDropDown</div>;
+const CartDropDown = ({ showCartElement, ...props }: Props) => {
+  return (
+    <DropDownTemplateComponent
+      showElement={showCartElement}
+      stickySide="right"
+      className="border-gray-100 gap-1"
+    >
+      {true ? <CartWithItems /> : <EmptyCart />}
+    </DropDownTemplateComponent>
+  );
 };
 
 export default CartDropDown;

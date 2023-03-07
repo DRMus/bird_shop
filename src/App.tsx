@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
 
 import Home from "./pages/Home/Home";
@@ -8,8 +8,16 @@ import Catalog from "./pages/Catalog/Catalog";
 import GlobalContext from "./context/GlobalContext";
 import Auth from "./pages/Auth/Auth";
 import Profile from "./pages/Profile/Profile";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import tokenActions from "./redux/actions/token.actions";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    tokenActions.checkToken()(dispatch);
+  }, []);
   return (
     <div className="App w-full h-full flex flex-col bg-mgray">
       <GlobalContext>
@@ -22,6 +30,8 @@ function App() {
             <Route path="catalog/*" element={<Catalog />} />
             <Route path="auth" element={<Auth />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="admin" element={<Admin />} />
+            <Route path="*" element={<Navigate to="/"/>} />
           </Routes>
         </section>
         <footer className="bg-micon w-full h-64 flex items-center justify-center">

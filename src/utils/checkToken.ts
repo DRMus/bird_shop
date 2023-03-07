@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 import { IDecodedToken, IInitialStateToken } from "../redux";
 
-export default (state: IInitialStateToken) => {
+export default (state: IInitialStateToken) : IInitialStateToken => {
   if (!state.token) {
     return {...state, decodedToken: null, isExpired: true};
   }

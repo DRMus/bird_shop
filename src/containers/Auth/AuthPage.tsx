@@ -1,11 +1,13 @@
 import { AxiosError, AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import AuthComponent from "../../components/AuthComponents/AuthComponent";
 import ErrorsContext from "../../context/ErrorsContext";
 import { IErrorsRender, ISignUpErrors } from "../../interfaces/api";
+import { IRootReducer } from "../../redux";
 import tokenActions from "../../redux/actions/token.actions";
+import { getIsExpired } from "../../redux/selectors/token.selectors";
 import loginUser from "../../utils/Api/loginUser";
 import signUpUser from "../../utils/Api/signUpUser";
 import useQuery from "../../utils/useQuery";
@@ -13,6 +15,8 @@ import useQuery from "../../utils/useQuery";
 const AuthPage = () => {
   const [isLoginPage, setIsLoginPage] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<IErrorsRender | null>(null);
+
+  const isExpired = useSelector<IRootReducer, boolean>(getIsExpired);
 
   const redirectTo = useNavigate();
   const dispatch = useDispatch();
@@ -30,8 +34,16 @@ const AuthPage = () => {
         dispatch(tokenActions.getToken());
         redirectTo("/profile");
       })
-      .catch((item) => {
-        console.log(item);
+      .catch((item: AxiosError) => {
+        if (item.response?.status == 400) {
+          setFormErrors({
+            phoneNumber: "Неверный номер или пароль",
+          });
+        } else {
+          setFormErrors({
+            phoneNumber: "Проблема с сервером",
+          });
+        }
       });
   };
 
@@ -79,12 +91,12 @@ const AuthPage = () => {
   };
 
   useEffect(() => {
-    if (query.get("q") === "login") {
-      setIsLoginPage(true);
+    if (isExpired) {
+      setIsLoginPage(query.get("q") === "login");
     } else {
-      setIsLoginPage(false);
+      redirectTo("/profile");
     }
-  }, [query.get("q")]);
+  }, [query.get("q"), isExpired]);
 
   return (
     <ErrorsContext.Provider
