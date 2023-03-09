@@ -10,6 +10,22 @@ export interface IUserInfo {
 export type ISignUpErrors = { errors: ["email" | null, "phoneNumber" | null] };
 
 export interface IErrorsRender {
-  phoneNumber?: string;
-  email?: string;
+  [key: string]: string | undefined;
 }
+
+export interface ICatalogItem {
+  category_id: number;
+  category: string;
+  has_weight: boolean;
+}
+
+export interface IProductItem {
+  product_id?: number,
+  category_id: number,
+  name: string,
+  second_name?: string,
+  description?: string,
+  cost: number,
+  image: string
+}
+  

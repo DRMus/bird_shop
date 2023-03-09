@@ -8,24 +8,22 @@ interface Props {
   type?: HTMLInputTypeAttribute;
   textArea?: boolean;
   defaultValue?: string;
+  value?: string | number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 const FormInputComponent = (props: Props) => {
   const { formErrors } = useContext(ErrorsContext);
   const [currentError, setCurrentError] = useState<string | undefined>();
 
-  useEffect(() => {
-    switch (props.name) {
-      case "email":
-        setCurrentError(formErrors?.email);
-        break;
-      case "phone_number":
-        setCurrentError(formErrors?.phoneNumber);
-        break;
+  const onChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setCurrentError(undefined);
+    props.onChange && props.onChange(e);
+  }
 
-      default:
-        setCurrentError(undefined);
-        break;
+  useEffect(() => {
+    if (formErrors && Object.hasOwn(formErrors, props.name)) {
+      setCurrentError(Object.getOwnPropertyDescriptor(formErrors, props.name)?.value)
     }
   }, [formErrors]);
 
@@ -39,7 +37,7 @@ const FormInputComponent = (props: Props) => {
             "border-gray-300 focus:border-gray-400": !currentError,
             "border-red-300 focus:border-red-400": currentError,
           })}
-          onChange={() => setCurrentError(undefined)}
+          onChange={onChangeInput}
           placeholder={props.placeholder}
         ></textarea>
       ) : (
@@ -51,8 +49,9 @@ const FormInputComponent = (props: Props) => {
             "border-gray-300 focus:border-gray-400": !currentError,
             "border-red-300 focus:border-red-400": currentError,
           })}
-          onChange={() => setCurrentError(undefined)}
+          onChange={onChangeInput}
           placeholder={props.placeholder}
+          value={!Number.isNaN(props.value) ? props.value : ""}
         />
       )}
 

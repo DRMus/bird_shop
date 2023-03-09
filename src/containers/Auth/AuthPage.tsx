@@ -10,6 +10,7 @@ import tokenActions from "../../redux/actions/token.actions";
 import { getIsExpired } from "../../redux/selectors/token.selectors";
 import loginUser from "../../utils/Api/loginUser";
 import signUpUser from "../../utils/Api/signUpUser";
+import getFormData from "../../utils/getFormData";
 import useQuery from "../../utils/useQuery";
 
 const AuthPage = () => {
@@ -76,18 +77,13 @@ const AuthPage = () => {
     ev.preventDefault();
     setFormErrors(null);
 
-    let formData = new FormData();
-    Array.from(ev.target.elements as HTMLInputElement[]).forEach((item: HTMLInputElement) => {
-      if (item.name) {
-        formData.append(item.name, item.value);
+    getFormData(ev).then((formData) => {
+      if (isLoginPage) {
+        submitLoginUser(formData);
+      } else {
+        submitRegisterUser(formData);
       }
     });
-
-    if (isLoginPage) {
-      submitLoginUser(formData);
-    } else {
-      submitRegisterUser(formData);
-    }
   };
 
   useEffect(() => {
