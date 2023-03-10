@@ -1,6 +1,6 @@
 import axios from "../../core/axios"
 import { ICatalogItem } from "../../interfaces/api"
 
-export default () => {
-  return axios.get<any>("/Categories")
+export default async () => {
+  return await axios.get("/Categories")
 }

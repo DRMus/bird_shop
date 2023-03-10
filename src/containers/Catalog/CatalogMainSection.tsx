@@ -4,10 +4,11 @@ import MixComponent from "../../components/CatalogComponents/MixComponents/MixCo
 import { ISeedsItem } from "../../interfaces";
 import useQuery from "../../utils/useQuery";
 
-import getProducts from "../../utils/Api/getProducts";
+import getProducts from "../../utils/Api/fetchProducts";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../redux/actions/breadCrumbs.actions";
 import { IRootReducer } from "../../redux";
+import fetchProducts from "../../utils/Api/fetchProducts";
 
 interface Props {
   pageName: string;
@@ -28,16 +29,16 @@ const CatalogMainSection = (props: Props) => {
     const queryId = query.get("id");
 
     if (queryId) {
-      getProducts(props.pathName, queryId).then((resp) => {
+      fetchProducts.getProductById(queryId).then((resp) => {
         setSelectedProduct(resp.data[0]);
         dispatch(actions.setBreadCrumbs(2, resp.data[0].name))
         setBirdsThings([]);
       });
     } else {
-      getProducts(props.pathName).then((resp) => {
-        setBirdsThings(resp.data);
-        setSelectedProduct(undefined);
-      });
+      // getProducts(props.pathName).then((resp) => {
+      //   setBirdsThings(resp.data);
+      //   setSelectedProduct(undefined);
+      // });
     }
   }, [query.get("id"), props.pathName]);
   return (

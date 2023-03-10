@@ -7,7 +7,8 @@ import birdPNG from "../../img/png/bird.png";
 import seedsPNG from "../../img/png/seeds.png";
 import dirdsNseedsPNG from "../../img/png/birds_seeds.png";
 import birdPhotoPNG from "../../img/png/bird_photo.png";
-import getProducts from "../../utils/Api/getProducts";
+import getProducts from "../../utils/Api/fetchProducts";
+import fetchProducts from "../../utils/Api/fetchProducts";
 
 const catalogItems: ICatalogItemOld[] = [
   {
@@ -60,10 +61,10 @@ const HomePage = () => {
   const [seedsItems, setSeedsItems] = useState<ISeedsItem[]>([]);
   const [feederItems, setFeederItems] = useState<IFeederType[]>([]);
   useEffect(() => {
-    getProducts("mix", undefined, 4).then((resp) => {
+    fetchProducts.getLimitedProducts(4, 4).then((resp) => {
       setSeedsItems(resp.data);
     });
-    getProducts("feeders", undefined, 4).then((resp) => {
+    fetchProducts.getLimitedProducts(5, 4).then((resp) => {
       setFeederItems(resp.data);
     });
   }, []);
