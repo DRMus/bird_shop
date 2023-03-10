@@ -3,7 +3,7 @@ interface IBuyCardDefaultItem {
   image: string;
 }
 
-export interface ICatalogItem extends IBuyCardDefaultItem {
+export interface ICatalogItemOld extends IBuyCardDefaultItem {
   firstDescription: string;
   secondDescription?: string;
 }

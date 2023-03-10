@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HomePageComponent from "../../components/HomeComponents/HomePageComponent";
 
-import { IBirdType, ICatalogItem, IFeederType, ISeedsItem } from "../../interfaces";
+import { IBirdType, ICatalogItemOld, IFeederType, ISeedsItem } from "../../interfaces";
 
 import birdPNG from "../../img/png/bird.png";
 import seedsPNG from "../../img/png/seeds.png";
@@ -9,7 +9,7 @@ import dirdsNseedsPNG from "../../img/png/birds_seeds.png";
 import birdPhotoPNG from "../../img/png/bird_photo.png";
 import getProducts from "../../utils/Api/getProducts";
 
-const catalogItems: ICatalogItem[] = [
+const catalogItems: ICatalogItemOld[] = [
   {
     id: 1,
     image: birdPNG,

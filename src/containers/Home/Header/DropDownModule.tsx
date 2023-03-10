@@ -1,22 +1,14 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useContext, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import DropDownModuleComponent from "../../../components/HomeComponents/HeaderComponents/DropDownModuleComponent";
 import ShopMenuContext from "../../../context/shopMenuContext";
 import { IShopItemTag } from "../../../interfaces/shopMenu";
-import actions from "../../../redux/actions/breadCrumbs.actions";
+import { IRootReducer } from "../../../redux";
+import categoriesActions from "../../../redux/actions/apiCategory.actions";
+import breadCrumbActions from "../../../redux/actions/breadCrumbs.actions";
+import { getCategoriesRedux } from "../../../redux/selectors/apiCategory.selectors";
 import useOutsideAlerter from "../../../utils/useOutsideAlerter";
-
-const moduleTags: IShopItemTag[] = [
-  {
-    name: "Готовые миксы",
-    page: "mix",
-  },
-  {
-    name: "Кормушки",
-    page: "feeders",
-  },
-];
 
 interface Props {
   startPage: string;
@@ -24,9 +16,9 @@ interface Props {
 
 const DropDownModule = (props: Props) => {
   const { showDropDown } = useContext(ShopMenuContext);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [moduleTagsState, setModuleTagsState] = useState<IShopItemTag[]>(moduleTags);
+  const catalogs = useSelector<IRootReducer, IShopItemTag[]>(getCategoriesRedux);
 
   const redirectTo = useNavigate();
   const dropDownRef = useRef<HTMLDivElement>(null);
@@ -35,24 +27,18 @@ const DropDownModule = (props: Props) => {
 
   const redirectToPage = (path: IShopItemTag) => {
     showDropDown(false);
-    dispatch(actions.setBreadCrumbs(1, path.name))
+    dispatch(breadCrumbActions.setBreadCrumbs(1, path.category));
     redirectTo(`${props.startPage}/${path.page}`);
   };
 
   useEffect(() => {
-    setModuleTagsState((prev) => {
-      prev = prev.map((item) => {
-        window.location.pathname.includes(item.page) ? (item.active = true) : (item.active = false);
-        return item;
-      });
-      return prev;
-    });
+    categoriesActions.fetchCatalogs()(dispatch);
   }, []);
 
   return (
     <DropDownModuleComponent
       startPage={props.startPage}
-      moduleTags={moduleTagsState}
+      moduleTags={catalogs}
       dropDownRef={dropDownRef}
       redirectToPage={redirectToPage}
       showDropDown={showDropDown}

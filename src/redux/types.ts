@@ -7,3 +7,7 @@ export enum TokenTypes {
   GET_JWTTOKEN = "TOKEN:GET",
   CHECK_TOKEN = "TOKEN:CHECK"
 }
+
+export enum ApiCatalogs {
+  SET_CATALOGS = "CATALOGS:SET"
+}

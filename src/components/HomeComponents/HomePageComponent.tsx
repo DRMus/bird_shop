@@ -4,12 +4,12 @@ import MainSectionComponent from "../TemplatesComponents/MainSectionComponents/M
 import CatalogItem from "../TemplatesComponents/MainSectionComponents/CatalogItem";
 import BuyCardItem from "../../containers/Templates/BuyCardItem";
 
-import { IBirdType, ICatalogItem, IFeederType, ISeedsItem } from "../../interfaces";
+import { IBirdType, ICatalogItemOld, IFeederType, ISeedsItem } from "../../interfaces";
 import SpinnerComponent from "../TemplatesComponents/SpinnerComponent";
 
 
 interface Props {
-  catalogItems: ICatalogItem[];
+  catalogItems: ICatalogItemOld[];
   seedsItems: ISeedsItem[];
   birdsItem: IBirdType[];
   feederItems: IFeederType[];

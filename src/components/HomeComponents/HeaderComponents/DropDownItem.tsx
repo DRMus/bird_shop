@@ -19,7 +19,7 @@ const DropDownItem = (props: Props) => {
       )}
       onClick={props.onClick}
     >
-      <p>{props.item.name}</p>
+      <p>{props.item.category}</p>
     </div>
   );
 };

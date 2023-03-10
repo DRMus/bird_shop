@@ -1,7 +1,7 @@
-import { ICatalogItem } from "../../../interfaces";
+import { ICatalogItemOld } from "../../../interfaces";
 
 interface Props {
-  item: ICatalogItem;
+  item: ICatalogItemOld;
 }
 
 const CatalogItem = (props: Props) => {
