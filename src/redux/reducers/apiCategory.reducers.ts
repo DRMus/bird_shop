@@ -2,7 +2,7 @@ import { IAction, IInitialStateCatalogs } from "..";
 import { ApiCatalogs } from "../types";
 
 const initialState: IInitialStateCatalogs = {
-  catalogList: []
+  catalogList: null
 };
 
 export default (

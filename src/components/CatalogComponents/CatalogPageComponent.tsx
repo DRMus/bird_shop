@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Routes, useLocation } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import BreadCrumbsComponent from "./BreadCrumbsComponent";
 import PaginationComponent from "./PaginationComponent";
 import CatalogMainSection from "../../containers/Catalog/CatalogMainSection";
@@ -8,11 +8,15 @@ import PrevPage from "../../containers/Templates/PrevPage";
 import { IShopItemTag } from "../../interfaces/shopMenu";
 
 interface Props {
-  catalogs: IShopItemTag[]
+  catalogs: IShopItemTag[];
+  pagesCount: number;
+  selectedPage: number;
+  getPagesCount: (pages: number) => void;
+  selectPage: (page: number) => void;
 }
 
-const CatalogPageComponent = ({ ...props }: Props) => {
-  const location = useLocation()
+const CatalogPageComponent = ({ getPagesCount, selectPage, ...props }: Props) => {
+  const location = useLocation();
   return (
     <div className="home-sections w-mscreen flex flex-col gap-6 py-20 text-micon">
       <div className="bread-crumbs flex gap-3.5">
@@ -24,18 +28,29 @@ const CatalogPageComponent = ({ ...props }: Props) => {
           <Routes>
             {props.catalogs.map((item, index) => (
               <Route
-              path={item.page}
-              key={index}
-              element={
-                <CatalogMainSection pageName={item.category} pathName={item.page} isSell hasWeight={item.has_weight} />
-              }
-            />
+                path={item.page}
+                key={index}
+                element={
+                  <CatalogMainSection
+                    pageName={item.category}
+                    pathName={item.page}
+                    isSell
+                    hasWeight={item.has_weight}
+                    getPagesCount={getPagesCount}
+                  />
+                }
+              />
             ))}
+            <Route path="*" element={<Navigate to={"/"} />} />
           </Routes>
         </div>
-        {(location.search.indexOf("id") <= 0) && (
+        {location.search.indexOf("id") <= 0 && (
           <div className="catalog--main-section--pagination flex w-full items-center justify-center ">
-            <PaginationComponent />
+            <PaginationComponent
+              selectedPage={props.selectedPage}
+              pagesCount={props.pagesCount}
+              onClick={selectPage}
+            />
           </div>
         )}
       </div>

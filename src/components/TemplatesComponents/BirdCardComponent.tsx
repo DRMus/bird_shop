@@ -2,10 +2,10 @@ import React from "react";
 import ShoppingCartOutlined from "@ant-design/icons/lib/icons/ShoppingCartOutlined";
 
 import WeightComponent from "./WeightComponent";
-import { IProductItem } from "../../interfaces/api";
+import testProduct from "../../img/png/testProduct.png"
 
 interface Props {
-  item: IProductItem;
+  item: any;
   selectedWeight: number;
   hasWeight?: boolean;
   isSell?: boolean;
@@ -16,22 +16,22 @@ interface Props {
 const BuyCardItemComponent = ({ weightHandler, redirectToCard, ...props }: Props) => {
   return (
     <div className="home-buy-card bg-white shadow-card flex flex-col gap-6 w-fit px-5 pt-5 pb-7 border border-gray-100 rounded-xl">
-      {/* <img src={testProduct} hidden/> */}
-      <div className="home-buy-card--photo w-[275px] h-[230px] flex items-center justify-center">
-        <img src={props.item.image} alt={"картинка"} className="object-contain"/>
+      <img src={testProduct} hidden/>
+      <div className="home-buy-card--photo w-[275px] h-[230px]">
+        <img src={props.item.image} alt={"картинка"} className="w-full h-full"/>
       </div>
       <div className="home-buy-card--description flex flex-col gap-1 w-64">
-        <p className="font-bold text-2xl h-[30px] truncate" title={props.item.name}>{props.item.name}</p>
-        <p className="text-gray-500 text-sm h-[20px] truncate">{props.item.second_name}</p>
+        <p className="font-bold text-2xl">{props.item.name}</p>
+        <p className="text-gray-500 text-sm">{props.item.category}</p>
       </div>
       {props.isSell && (
         <div className="home-buy-card--cost">
-          <p className="font-bold text-xl">{(props.item.cost * (props.selectedWeight / 1000)).toFixed(1)} руб.</p>
+          <p className="font-bold text-xl">{props.item.cost} руб.</p>
         </div>
       )}
       {props.hasWeight && (
         <WeightComponent
-          id={props.item.product_id as number}
+          id={props.item.id}
           selectedWeight={props.selectedWeight}
           weightHandler={weightHandler}
         />
@@ -39,7 +39,7 @@ const BuyCardItemComponent = ({ weightHandler, redirectToCard, ...props }: Props
       <div className="home-buy-card--actions flex justify-between">
         <button
           className="w-fit text-lg text-white px-8 py-2 rounded-md bg-mgreen transition-colors hover:bg-mstronggreen active:bg-mgreen"
-          onClick={(e) => redirectToCard(props.item.product_id as number)}
+          onClick={(e) => redirectToCard(props.item.id)}
         >
           Подробнее
         </button>

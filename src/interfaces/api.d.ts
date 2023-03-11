@@ -28,4 +28,9 @@ export interface IProductItem {
   cost: number,
   image: string
 }
+
+export interface IPaginationProducts {
+  pages: number;
+  products: IProductItem[]
+}
   

@@ -18,7 +18,7 @@ export interface IInitialStateToken {
 }
 
 export interface IInitialStateCatalogs {
-  catalogList: IShopItemTag[];
+  catalogList: IShopItemTag[] | null;
 }
 
 

@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import BuyCardItemComponent from "../../components/TemplatesComponents/BuyCardItemComponent";
+import BirdCardComponent from "../../components/TemplatesComponents/BirdCardComponent";
+import { IBirdType } from "../../interfaces";
 import { IProductItem } from "../../interfaces/api";
 
 interface Props {
-  item: IProductItem;
+  item: IBirdType | IProductItem;
   pathname: string;
   hasWeight?: boolean;
   isSell?: boolean;
 }
 
-const BuyCardItem = (props: Props) => {
+const BirdCard = (props: Props) => {
   const [selectedWeight, setSelectedWeight] = useState<number>(200);
 
   const redirectTo = useNavigate();
@@ -24,15 +25,15 @@ const BuyCardItem = (props: Props) => {
   }
 
   return (
-    <BuyCardItemComponent
+    <BirdCardComponent
       item={props.item}
       weightHandler={weightHandler}
       redirectToCard={redirectToCard}
-      selectedWeight={props.hasWeight ? selectedWeight : 1000}
+      selectedWeight={selectedWeight}
       hasWeight={props.hasWeight}
       isSell={props.isSell}
     />
   );
 };
 
-export default BuyCardItem;
+export default BirdCard;

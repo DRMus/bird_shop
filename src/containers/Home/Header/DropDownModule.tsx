@@ -18,7 +18,7 @@ const DropDownModule = (props: Props) => {
   const { showDropDown } = useContext(ShopMenuContext);
   const dispatch = useDispatch();
 
-  const catalogs = useSelector<IRootReducer, IShopItemTag[]>(getCategoriesRedux);
+  const catalogs = useSelector<IRootReducer, IShopItemTag[] | null>(getCategoriesRedux);
 
   const redirectTo = useNavigate();
   const dropDownRef = useRef<HTMLDivElement>(null);
@@ -28,17 +28,13 @@ const DropDownModule = (props: Props) => {
   const redirectToPage = (path: IShopItemTag) => {
     showDropDown(false);
     dispatch(breadCrumbActions.setBreadCrumbs(1, path.category));
-    redirectTo(`${props.startPage}/${path.page}`);
+    redirectTo(`${props.startPage}/${path.page}?page=1`);
   };
-
-  useEffect(() => {
-    categoriesActions.fetchCatalogs()(dispatch);
-  }, []);
 
   return (
     <DropDownModuleComponent
       startPage={props.startPage}
-      moduleTags={catalogs}
+      moduleTags={catalogs || []}
       dropDownRef={dropDownRef}
       redirectToPage={redirectToPage}
       showDropDown={showDropDown}

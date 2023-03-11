@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import ProductComponent from "../../components/CatalogComponents/MixComponents/ProductComponent";
 import { ISeedsItem } from "../../interfaces";
+import { IProductItem } from "../../interfaces/api";
 
 interface Props {
-  product: ISeedsItem;
+  product: IProductItem;
   hasWeight: boolean;
 }
 
