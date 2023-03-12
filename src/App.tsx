@@ -12,11 +12,15 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import tokenActions from "./redux/actions/token.actions";
 import Admin from "./pages/Admin/Admin";
+import categoriesActions from "./redux/actions/apiCategory.actions";
+import { setCart } from "./utils/cartOperations";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     tokenActions.checkToken()(dispatch);
+    categoriesActions.fetchCatalogs()(dispatch);
+    setCart(dispatch);
   }, []);
   return (
     <div className="App w-full h-full flex flex-col bg-mgray">

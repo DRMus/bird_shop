@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { ICatalogItemOld } from "../../../interfaces";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 const CatalogItem = (props: Props) => {
   return (
     <div className="bg-white shadow-card flex flex-col gap-3 w-fit px-5 pt-5 pb-7 border border-gray-100 rounded-xl">
-      <div className="home-catalog--photo">
+      <div className="home-catalog--photo w-[387px] h-[211px]">
         <img src={props.item.image} alt="Птицы" />
       </div>
       <div className="home-catalog--description flex flex-col h-32">

@@ -7,7 +7,7 @@ interface Props {
   descrip: string;
 }
 
-const EmptyCart = (props: Props) => {
+const EmptyList = (props: Props) => {
   return (
     <div className={`w-${props.width} h-${props.height} flex items-center justify-center`}>
       <Empty
@@ -18,4 +18,4 @@ const EmptyCart = (props: Props) => {
   );
 };
 
-export default EmptyCart;
+export default EmptyList;

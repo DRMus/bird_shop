@@ -4,7 +4,7 @@ import MainSectionComponent from "../TemplatesComponents/MainSectionComponents/M
 import CatalogItem from "../TemplatesComponents/MainSectionComponents/CatalogItem";
 import BuyCardItem from "../../containers/Templates/BuyCardItem";
 
-import { IBirdType, ICatalogItemOld, ISeedsItem } from "../../interfaces";
+import { IBirdType, ICatalogItemOld } from "../../interfaces";
 import SpinnerComponent from "../TemplatesComponents/SpinnerComponent";
 import { IProductItem } from "../../interfaces/api";
 import { Empty } from "antd";

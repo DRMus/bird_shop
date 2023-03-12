@@ -1,7 +1,6 @@
 import React from "react";
 import BuyCardItem from "../../../containers/Templates/BuyCardItem";
 import ProductContainer from "../../../containers/Product/ProductContainer";
-import { ISeedsItem } from "../../../interfaces";
 import { IProductItem } from "../../../interfaces/api";
 import EmptyList from "../../TemplatesComponents/EmptyList";
 import SpinnerComponent from "../../TemplatesComponents/SpinnerComponent";
@@ -34,7 +33,7 @@ const MixComponent = (props: Props) => {
           <EmptyList width="full" height="[350px]" descrip="Список пуст" />
         )
       ) : (
-        <SpinnerComponent fontSize={72} className="w-mscreen h-72" />
+        <SpinnerComponent fontSize={100} className="w-mscreen h-[530px]" />
       )}
     </>
   );

@@ -1,10 +1,12 @@
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import React from "react";
+import { ICartItem } from "../../../interfaces";
 import CartDropDown from "./CartDropDown";
 
 interface Props {
   isCartActive: boolean;
+  itemsCount: number;
   showCartElement: (state: boolean) => void;
   onClick: React.MouseEventHandler<HTMLDivElement>;
 }
@@ -22,14 +24,17 @@ const CartComponent = ({ onClick, showCartElement, ...props }: Props) => {
 
       {props.isCartActive ? (
         <CartDropDown showCartElement={showCartElement} />
-      ) : (
+      ) : props.itemsCount ? (
         <>
-          <div className="animate-ping w-3 h-3 absolute -top-0.5 -right-0.5 bg-mstronggreen rounded-full"></div>
-          <div className="shop-info--cart--prod-count text-xs text-center bg-mstronggreen w-4 h-4 absolute -top-1 -right-1 rounded-full text-white">
-            2
+          <div className="animate-ping w-3 h-3 absolute -top-0.5 -right-0.5 bg-mstronggreen rounded-full cursor-pointer"></div>
+          <div
+            className="shop-info--cart--prod-count text-xs text-center bg-mstronggreen w-4 h-4 absolute -top-1 -right-1 rounded-full text-white z-50 cursor-pointer"
+            onClick={onClick}
+          >
+            {props.itemsCount}
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 };

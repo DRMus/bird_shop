@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import { IRootReducer } from ".";
 import apiCategoryReducers from "./reducers/apiCategory.reducers";
 import breadCrumbsReducers from "./reducers/breadCrumbs.reducers";
+import cartReducers from "./reducers/cart.reducers";
 import tokenReducers from "./reducers/token.reducers";
 
 const rootReducer = combineReducers<IRootReducer>({
   breadCrumbs: breadCrumbsReducers,
   tokenReducer: tokenReducers,
-  ApiCatalogs: apiCategoryReducers
+  ApiCatalogs: apiCategoryReducers,
+  cartReducer: cartReducers
 });
 
 const middleware = [thunk];

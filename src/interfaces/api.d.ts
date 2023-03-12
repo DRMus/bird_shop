@@ -1,3 +1,5 @@
+import { ICartItem } from ".";
+
 export interface IUserInfo {
   id?: number;
   fullname?: string | null;
@@ -32,5 +34,15 @@ export interface IProductItem {
 export interface IPaginationProducts {
   pages: number;
   products: IProductItem[]
+}
+
+export interface IOrderItem {
+  order_id?: number;
+  user_id: number;
+  state?: number;
+  delivery_date: Date | string;
+  sum_cost: number | string;
+  User: null;
+  orderProducts: ICartItem[];
 }
   

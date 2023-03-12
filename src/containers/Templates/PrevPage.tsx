@@ -8,7 +8,8 @@ const PrevPage = () => {
   const prevPage = () => {
     const localName = window.location.href.replace(window.location.origin, "").split(/[/?]/)
     localName.pop()
-    redirectTo(localName.join("/") === "/catalog" ? "/" : localName.join("/"))
+    redirectTo(-1)
+    // localName.join("/") === "/catalog" ? "/" : localName.join("/")
   }
   return (
     <PrevPageComponent prevPage={prevPage}/>

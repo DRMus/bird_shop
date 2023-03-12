@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import MixComponent from "../../components/CatalogComponents/MixComponents/MixComponent";
-import { ISeedsItem } from "../../interfaces";
 import useQuery from "../../utils/useQuery";
 
 import { useDispatch, useSelector } from "react-redux";

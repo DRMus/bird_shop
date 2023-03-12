@@ -1,3 +1,4 @@
+import { ICartItem } from "../interfaces";
 import { IShopItemTag } from "../interfaces/shopMenu";
 
 
@@ -5,6 +6,7 @@ export interface IRootReducer {
   breadCrumbs: IInitialStateBread;
   tokenReducer: IInitialStateToken;
   ApiCatalogs: IInitialStateCatalogs;
+  cartReducer: IInitialStateCart;
 }
 
 export interface IInitialStateBread {
@@ -37,4 +39,8 @@ export interface IDecodedToken {
   id: string;
   iss: string;
   phone_number: string;
+}
+
+export interface IInitialStateCart {
+  cartElements: ICartItem[]
 }

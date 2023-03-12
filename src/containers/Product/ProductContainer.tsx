@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ProductComponent from "../../components/CatalogComponents/MixComponents/ProductComponent";
-import { ISeedsItem } from "../../interfaces";
+import { ICartItem } from "../../interfaces";
 import { IProductItem } from "../../interfaces/api";
+import { addToCart } from "../../utils/cartOperations";
 
 interface Props {
   product: IProductItem;
@@ -11,6 +13,8 @@ interface Props {
 const ProductContainer = (props: Props) => {
   const [selectedWeight, setSelectedWeight] = useState<number>(200);
   const [selectedCount, setSelectedCount] = useState<number>(1);
+
+  const dispatch = useDispatch()
 
   const weightHandler = (weight: number) => {
     setSelectedWeight(weight);
@@ -29,6 +33,26 @@ const ProductContainer = (props: Props) => {
         break;
     }
   };
+
+  const totalCost = () => {
+    if (props.hasWeight) {
+      return (props.product.cost * selectedCount * (selectedWeight / 1000)).toFixed(1);
+    }
+    return (props.product.cost * selectedCount).toFixed(1);
+  };
+
+  const createCartElement = () => {
+    let cartElement: ICartItem = {
+      product: props.product,
+      weight: props.hasWeight ? selectedWeight : undefined,
+      count: selectedCount,
+      total_cost: Number.parseFloat(totalCost()),
+    };
+
+    addToCart(cartElement, dispatch);
+  };
+
+  const buyProduct = () => {};
   return (
     <ProductComponent
       product={props.product}
@@ -37,6 +61,8 @@ const ProductContainer = (props: Props) => {
       selectedCount={selectedCount}
       weightHandler={weightHandler}
       changeCount={changeCount}
+      onClickAdd={() => createCartElement()}
+      onClickBuy={() => buyProduct()}
     />
   );
 };

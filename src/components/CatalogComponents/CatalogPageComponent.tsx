@@ -41,7 +41,7 @@ const CatalogPageComponent = ({ getPagesCount, selectPage, ...props }: Props) =>
                 }
               />
             ))}
-            <Route path="*" element={<Navigate to={"/"} />} />
+            
           </Routes>
         </div>
         {location.search.indexOf("id") <= 0 && (

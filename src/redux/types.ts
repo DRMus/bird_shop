@@ -11,3 +11,7 @@ export enum TokenTypes {
 export enum ApiCatalogs {
   SET_CATALOGS = "CATALOGS:SET"
 }
+
+export enum CartTypes {
+  SET_ELEMENT = "CART:SET"
+}
