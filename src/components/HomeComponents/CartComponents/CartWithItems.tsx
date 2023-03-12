@@ -39,7 +39,7 @@ const CartWithItems = (props: Props) => {
   };
   return (
     <>
-      <div className="items">
+      <div className="items max-h-[525px] overflow-auto">
         {props.cartItems.map((item, index) => (
           <CartItem key={index} item={item} />
         ))}

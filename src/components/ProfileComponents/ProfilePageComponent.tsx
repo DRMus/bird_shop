@@ -28,7 +28,7 @@ const ProfilePageComponent = ({ showEditModal, submitEditUser, ...props }: Props
             <SpinnerComponent fontSize={60} className="w-[350px] h-64" />
           )}
         </SectionTemplate>
-        <SectionTemplate header="Все заказы:" classNameMain="grow" classNameChildren="p-0 overflow-hidden">
+        <SectionTemplate header="Все заказы:" classNameMain="grow" classNameChildren="p-0 max-h-[836px] overflow-auto">
           <UserOrders />
         </SectionTemplate>
       </div>

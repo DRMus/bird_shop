@@ -23,9 +23,8 @@ const BuyCardItemComponent = ({
 }: Props) => {
   return (
     <div className="home-buy-card bg-white shadow-card flex flex-col gap-6 w-fit px-5 pt-5 pb-7 border border-gray-100 rounded-xl">
-      {/* <img src={testProduct} hidden/> */}
       <div className="home-buy-card--photo w-[275px] h-[230px] flex items-center justify-center">
-        <img src={props.item.image} alt={"картинка"} className="object-contain" />
+        <img src={props.item.image} alt={"картинка"} className="object-contain w-full h-full" />
       </div>
       <div className="home-buy-card--description flex flex-col gap-1 w-64">
         <p className="font-bold text-2xl h-[30px] truncate" title={props.item.name}>

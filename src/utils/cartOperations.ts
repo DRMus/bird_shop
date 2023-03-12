@@ -99,7 +99,7 @@ export const changeCartItem = (cartItem: ICartItem, count: number, dispatch: Dis
   }
 
   cartList = cartList.map((item) => {
-    if (item.product.product_id === newCartItem.product.product_id) {   
+    if (item.product.product_id === newCartItem.product.product_id && item.weight === newCartItem.weight) {   
       return newCartItem;
     }
     return item;
