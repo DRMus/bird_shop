@@ -3,7 +3,7 @@ import { IPopUp } from "../interfaces";
 import PopUpPortal from "../portals/PopUpPortal";
 
 interface IPopUpContext {
-  addPopUp: (popUp: IPopUp) => void;
+  addPopUp: (type: "done" | "error", message: string) => void;
   deletePopUp: () => void;
 }
 
@@ -18,22 +18,27 @@ export const PopUpContextValues = React.createContext<IPopUpContext>({
 
 const PopUpContext = (props: Props) => {
   const [popUpList, setPopUpList] = useState<IPopUp[]>([]);
-  const interimPopUpListRef = useRef<IPopUp[]>([])
+  const interimPopUpListRef = useRef<IPopUp[]>([]);
 
-  const addPopUp = (popUp: IPopUp) => {
+  const addPopUp = (type: "done" | "error", message: string) => {
+    let popUp = {
+      type,
+      message,
+    };
+
     interimPopUpListRef.current = [...popUpList, popUp];
     setPopUpList(interimPopUpListRef.current);
   };
 
   const deletePopUp = () => {
     setTimeout(() => {
-      interimPopUpListRef.current = interimPopUpListRef.current.slice(1)
+      interimPopUpListRef.current = interimPopUpListRef.current.slice(1);
       setPopUpList(interimPopUpListRef.current);
-    }, 3500);
+    }, 5000);
   };
 
   console.log("rerend");
-  
+
   return (
     <PopUpContextValues.Provider
       value={{

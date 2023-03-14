@@ -1,9 +1,10 @@
 import { AxiosError, AxiosResponse } from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import AuthComponent from "../../components/AuthComponents/AuthComponent";
 import ErrorsContext from "../../context/ErrorsContext";
+import { PopUpContextValues } from "../../context/PopUpContext";
 import { IErrorsRender, ISignUpErrors } from "../../interfaces/api";
 import { IRootReducer } from "../../redux";
 import tokenActions from "../../redux/actions/token.actions";
@@ -14,6 +15,8 @@ import getFormData from "../../utils/getFormData";
 import useQuery from "../../utils/useQuery";
 
 const AuthPage = () => {
+  const { addPopUp } = useContext(PopUpContextValues);
+
   const [isLoginPage, setIsLoginPage] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<IErrorsRender | null>(null);
 
@@ -33,6 +36,7 @@ const AuthPage = () => {
       .then((item) => {
         localStorage.setItem("token", item.data);
         dispatch(tokenActions.getToken());
+        addPopUp("done", "Авторизация прошла успешно")
         redirectTo("/profile");
       })
       .catch((item: AxiosError) => {

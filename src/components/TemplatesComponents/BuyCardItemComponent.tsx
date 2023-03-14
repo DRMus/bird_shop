@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import ShoppingCartOutlined from "@ant-design/icons/lib/icons/ShoppingCartOutlined";
 
 import WeightComponent from "./WeightComponent";
 import { IProductItem } from "../../interfaces/api";
+import { PopUpContextValues } from "../../context/PopUpContext";
+import { IPopUp } from "../../interfaces";
 
 interface Props {
   item: IProductItem;
@@ -11,7 +13,7 @@ interface Props {
   isSell?: boolean;
   weightHandler: (weight: number) => void;
   redirectToCard: (id: string | number) => void;
-  createCartElement?: () => void;
+  createCartElement: () => void;
   totalCost: () => string;
 }
 
@@ -21,6 +23,7 @@ const BuyCardItemComponent = ({
   createCartElement,
   ...props
 }: Props) => {
+  
   return (
     <div className="home-buy-card bg-white shadow-card flex flex-col gap-6 w-fit px-5 pt-5 pb-7 border border-gray-100 rounded-xl">
       <div className="home-buy-card--photo w-[275px] h-[230px] flex items-center justify-center">

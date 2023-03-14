@@ -1,5 +1,7 @@
-import React from "react";
+import { AxiosError } from "axios";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
+import { PopUpContextValues } from "../../../context/PopUpContext";
 import { ICartItem } from "../../../interfaces";
 import { IOrderItem } from "../../../interfaces/api";
 import { IInitialStateToken, IRootReducer } from "../../../redux";
@@ -14,13 +16,15 @@ interface Props {
 }
 
 const CartWithItems = (props: Props) => {
+  const { addPopUp } = useContext(PopUpContextValues);
   const { token, decodedToken, isExpired } = useSelector<IRootReducer, IInitialStateToken>(
     getTokenReducer
   );
 
   const configOrderItem = () => {
     if (isExpired || !decodedToken) {
-      console.log("Требуется авторизация");
+      addPopUp("error", "Ошибка: Требуется авторизация");
+
       return;
     }
 
@@ -33,9 +37,18 @@ const CartWithItems = (props: Props) => {
       orderProducts: props.cartItems,
     };
 
-    fetchOrders.postOrder(newOrderItem).then((resp) => {
-      console.log(resp);
-    });
+    fetchOrders
+      .postOrder(newOrderItem)
+      .then((resp) => {
+        addPopUp("done", "Заказ оформлен");
+      })
+      .catch((err: AxiosError) => {
+        if (err.code) {
+          addPopUp("error", "Ошибка: Заказ не оформлен");
+          return;
+        }
+        addPopUp("error", "Ошибка: Сервер не отвечает");
+      });
   };
   return (
     <>

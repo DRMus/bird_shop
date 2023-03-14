@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import BuyCardItemComponent from "../../components/TemplatesComponents/BuyCardItemComponent";
-import { ICartItem } from "../../interfaces";
+import { PopUpContextValues } from "../../context/PopUpContext";
+import { ICartItem, IPopUp } from "../../interfaces";
 import { IProductItem } from "../../interfaces/api";
 import { addToCart } from "../../utils/cartOperations";
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const BuyCardItem = (props: Props) => {
+  const { addPopUp } = useContext(PopUpContextValues);
   const [selectedWeight, setSelectedWeight] = useState<number>(200);
 
   const redirectTo = useNavigate();
@@ -24,14 +26,14 @@ const BuyCardItem = (props: Props) => {
   };
 
   const redirectToCard = (id: string | number) => {
-    redirectTo(`/catalog/${props.pathname}?id=${id}`)
-  }
+    redirectTo(`/catalog/${props.pathname}?id=${id}`);
+  };
 
   const totalCost = () => {
     if (props.hasWeight) {
       return (props.item.cost * (selectedWeight / 1000)).toFixed(1);
     }
-    return (props.item.cost).toFixed(1);
+    return props.item.cost.toFixed(1);
   };
 
   const createCartElement = () => {
@@ -42,6 +44,7 @@ const BuyCardItem = (props: Props) => {
       total_cost: Number.parseFloat(totalCost()),
     };
 
+    addPopUp("done", `Товар "${props.item.name}" добавлен в корзину`);
     addToCart(cartElement, dispatch);
   };
 

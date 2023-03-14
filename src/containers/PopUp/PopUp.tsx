@@ -15,7 +15,7 @@ const PopUp = (props: Props) => {
     
     setTimeout(() => {  
       setIsActive(false)
-    }, 3200)
+    }, 4700)
     deletePopUp();
   }, []);
   return <PopUpComponent popUp={props.item} isActive={isActive}/>;

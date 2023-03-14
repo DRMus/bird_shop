@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductComponent from "../../components/CatalogComponents/MixComponents/ProductComponent";
+import { PopUpContextValues } from "../../context/PopUpContext";
 import { ICartItem } from "../../interfaces";
 import { IProductItem } from "../../interfaces/api";
 import { addToCart } from "../../utils/cartOperations";
@@ -11,10 +12,11 @@ interface Props {
 }
 
 const ProductContainer = (props: Props) => {
+  const { addPopUp } = useContext(PopUpContextValues);
   const [selectedWeight, setSelectedWeight] = useState<number>(200);
   const [selectedCount, setSelectedCount] = useState<number>(1);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const weightHandler = (weight: number) => {
     setSelectedWeight(weight);
@@ -49,6 +51,7 @@ const ProductContainer = (props: Props) => {
       total_cost: Number.parseFloat(totalCost()),
     };
 
+    addPopUp("done", `Товар "${props.product.name}" добавлен в корзину`);
     addToCart(cartElement, dispatch);
   };
 
