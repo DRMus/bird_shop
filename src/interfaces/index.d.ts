@@ -21,9 +21,13 @@ export interface IBreadCrumb {
 }
 
 export interface ICartItem {
-  product: IProductItem
-  total_cost: number
-  weight?: number
-  count: number
+  product: IProductItem;
+  total_cost: number;
+  weight?: number;
+  count: number;
+}
 
+export interface IPopUp {
+  type: "error" | "done",
+  message: string
 }

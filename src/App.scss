@@ -11,6 +11,14 @@ span svg {
   animation: animationOpacity 200ms ease-in-out;
 }
 
+.pop-up {
+  &--show {
+    animation: showPopUp 200ms ease-in-out;
+  }
+  &--close {
+    animation: closePopUp 200ms ease-in-out;
+  }
+}
 @keyframes showDropDown {
   0% {
     opacity: 0;
@@ -20,6 +28,29 @@ span svg {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+@keyframes showPopUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes closePopUp {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  
 }
 
 @keyframes animationOpacity {

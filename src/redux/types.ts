@@ -15,3 +15,8 @@ export enum ApiCatalogs {
 export enum CartTypes {
   SET_ELEMENT = "CART:SET"
 }
+
+export enum PopUpTypes {
+  SET_POPUP = "POPUP:SET",
+  DELETE_POPUP = "POPUP:DELETE"
+}

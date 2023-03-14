@@ -1,4 +1,4 @@
-import { ICartItem } from "../interfaces";
+import { ICartItem, IPopUp } from "../interfaces";
 import { IShopItemTag } from "../interfaces/shopMenu";
 
 
@@ -7,6 +7,7 @@ export interface IRootReducer {
   tokenReducer: IInitialStateToken;
   ApiCatalogs: IInitialStateCatalogs;
   cartReducer: IInitialStateCart;
+  popUpReducer: IInitialStatePopUp;
 }
 
 export interface IInitialStateBread {
@@ -23,6 +24,9 @@ export interface IInitialStateCatalogs {
   catalogList: IShopItemTag[] | null;
 }
 
+export interface IInitialStatePopUp {
+  popUpList: IPopUp[]
+}
 
 export interface IAction<T> {
   type: string;
