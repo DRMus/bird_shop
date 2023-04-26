@@ -54,11 +54,11 @@ const HeaderComponent = ({ redirectTo, showAuthModule, ...props }: Props) => {
         </div>
         <div className="shop-actions flex items-center pb-2">
           <ShopMenu />
-          <input
+          {/* <input
             type="text"
             className="w-1/4 p-4 py-3.5 bg-msearchgray outline-none rounded-xl border border-gray-300 focus:border-gray-400"
             placeholder="Поиск"
-          />
+          /> */}
         </div>
       </div>
     </div>

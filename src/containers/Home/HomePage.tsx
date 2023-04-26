@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import HomePageComponent from "../../components/HomeComponents/HomePageComponent";
 
 import { IBirdType, ICatalogItemOld } from "../../interfaces";
@@ -9,6 +9,8 @@ import dirdsNseedsPNG from "../../img/png/birds_seeds.png";
 import birdPhotoPNG from "../../img/png/bird_photo.png";
 import fetchProducts from "../../utils/Api/fetchProducts";
 import { IProductItem } from "../../interfaces/api";
+import { PopUpContextValues } from "../../context/PopUpContext";
+import { AxiosError } from "axios";
 
 const catalogItems: ICatalogItemOld[] = [
   {
@@ -58,18 +60,31 @@ const birdsItem: IBirdType[] = [
 ];
 
 const HomePage = () => {
+  const { addPopUp } = useContext(PopUpContextValues);
   const [seedsItems, setSeedsItems] = useState<IProductItem[] | null>(null);
   const [feederItems, setFeederItems] = useState<IProductItem[] | null>(null);
 
   useEffect(() => {
-    fetchProducts.getLimitedProducts(4, 4).then((resp) => {
-      setSeedsItems(resp.data);
-    });
-    fetchProducts.getLimitedProducts(5, 4).then((resp) => {
-      setFeederItems(resp.data);
-    });
-    
-
+    fetchProducts
+      .getLimitedProducts(4, 4)
+      .then((resp) => {
+        setSeedsItems(resp.data);
+      })
+      .catch((err: AxiosError) => {
+        if (err.code === "ERR_NETWORK") {
+          addPopUp("error", "Сервер недоступен");
+        }
+      });
+    fetchProducts
+      .getLimitedProducts(5, 4)
+      .then((resp) => {
+        setFeederItems(resp.data);
+      })
+      .catch((err: AxiosError) => {
+        if (err.code === "ERR_NETWORK") {
+          addPopUp("error", "Сервер недоступен");
+        }
+      });
   }, []);
   return (
     <HomePageComponent

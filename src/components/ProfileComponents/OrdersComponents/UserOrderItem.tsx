@@ -12,7 +12,7 @@ const UserOrderItem = (props: Props) => {
     return `${currentDate.getDate()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`;
   };
   return (
-    <div className="flex flex-col px-8 py-4 gap-4 border-b border-msearchgray">
+    <div className="flex flex-col px-8 py-4 gap-4">
       <div className="info flex justify-between">
         <div className="left-side flex flex-col gap-4">
           <div className="header flex flex-col gap-1">
